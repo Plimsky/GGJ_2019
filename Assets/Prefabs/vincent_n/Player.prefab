@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1682738078}
   - component: {fileID: 1682738079}
-  - component: {fileID: 4675504469993766250}
   - component: {fileID: 1682738080}
+  - component: {fileID: 4675504469993766250}
   m_Layer: 2
   m_Name: CollectibleTriger
   m_TagString: Player
@@ -59,19 +59,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.29466164, y: 0.37794468}
   m_EdgeRadius: 0
---- !u!114 &4675504469993766250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682738077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 135c21ccb52099f4085626c7cb1ad51e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_fragmentTag: Collectibles/Fragment
 --- !u!50 &1682738080
 Rigidbody2D:
   serializedVersion: 4
@@ -93,6 +80,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &4675504469993766250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682738077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135c21ccb52099f4085626c7cb1ad51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fragmentTag: Collectibles/Fragment
 --- !u!1 &8079759423776004340
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,11 +104,11 @@ GameObject:
   - component: {fileID: 1219754295178209492}
   - component: {fileID: 6705864338452723832}
   - component: {fileID: 2848951585016629197}
-  - component: {fileID: 5754428537888179567}
-  - component: {fileID: 8079759423776004341}
   - component: {fileID: 8079759423776004343}
   - component: {fileID: 1035622746923286122}
+  - component: {fileID: 8079759423776004341}
   - component: {fileID: 8079759423776004342}
+  - component: {fileID: 5754428537888179567}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -200,32 +200,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5754428537888179567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8079759423776004340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f6bb6a442d69b3428a7db86e062f781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_camera: {fileID: 0}
---- !u!114 &8079759423776004341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8079759423776004340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92931c4222385d2458553e6c4adf13c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_speed: 50
 --- !u!61 &8079759423776004343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -267,6 +241,19 @@ MonoBehaviour:
   m_life: 0
   m_fragments: 0
   m_enemyDestroyed: 0
+--- !u!114 &8079759423776004341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079759423776004340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92931c4222385d2458553e6c4adf13c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 50
 --- !u!114 &8079759423776004342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,3 +272,16 @@ MonoBehaviour:
     m_Bits: 256
   Target: {fileID: 0}
   DragForce: 0.08
+--- !u!114 &5754428537888179567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079759423776004340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6bb6a442d69b3428a7db86e062f781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_camera: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1508072617915001588}
   - component: {fileID: 3817707487467253405}
   - component: {fileID: 68233231}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment
   m_TagString: Collectibles/Fragment
   m_Icon: {fileID: 0}

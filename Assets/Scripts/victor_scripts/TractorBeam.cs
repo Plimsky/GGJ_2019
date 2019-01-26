@@ -41,18 +41,21 @@ public class TractorBeam : MonoBehaviour
         }
 
         Vector3 MouseDir = Input.mousePosition - MouseLastPos;
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (hit)
             {
                 Target = hit.collider.gameObject;
                 if (Target.GetComponent<WasteBehaviour>() != null)
                 {
-                    DragForce = Target.GetComponent<WasteBehaviour>().m_dragForce;
+                    DragForce                                     = Target.GetComponent<WasteBehaviour>().m_dragForce;
                     Target.GetComponent<WasteBehaviour>().m_state = WasteBehaviour.WasteState.TRACKED;
                 }
             }
+        }
 
+        if (Input.GetMouseButton(0))
+        {
             if (Target)
             {
                 Target.GetComponent<Rigidbody2D>().AddForce(MouseDir * DragForce);

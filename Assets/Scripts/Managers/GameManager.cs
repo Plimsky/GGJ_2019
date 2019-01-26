@@ -48,8 +48,11 @@ namespace Managers
         public void OnUpdateStats()
         {
             CheckLife();
-            CheckFragments();
-//            CheckEnemies();
+            if (m_state != GameState.DEAD)
+            {
+                CheckFragments();
+//                CheckEnemies();
+            }
         }
 
         private void CheckFragments()
@@ -66,7 +69,7 @@ namespace Managers
             if (m_playerData.m_life <= 0)
             {
                 m_state = GameState.DEAD;
-                Debug.Log("YOU'RE DEAD");
+
             }
         }
 

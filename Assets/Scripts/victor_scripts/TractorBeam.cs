@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 public class TractorBeam : MonoBehaviour
 {
-    public float     MaxLengthRay = 100.0f;
+    public float     MaxLengthRay = 8.0f;
     public Transform Crosshair;
 
     public LayerMask Mask;
@@ -12,6 +13,7 @@ public class TractorBeam : MonoBehaviour
     private Vector3 MouseLastPos;
 
     public GameObject Target;
+    public GameObject m_blackHolePrefab;
 
     private float LastDirTimer;
     public  float DragForce = 1;
@@ -33,8 +35,11 @@ public class TractorBeam : MonoBehaviour
     private GameObject   beam;
     private LineRenderer line;
     private Vector2      m_centerRay;
-    private Vector2 m_centerRayVelocity = Vector2.zero;
-    public float m_centerRaySmoothness = 0.5f;
+    private Vector2      m_centerRayVelocity   = Vector2.zero;
+    public  float        m_centerRaySmoothness = 0.5f;
+
+    private GameObject m_temporaryBlackHole;
+    private float m_distanceTarget;
 
     void Start()
     {
@@ -44,6 +49,11 @@ public class TractorBeam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Target != null)
+        {
+            m_distanceTarget = Vector3.Distance(transform.position, Target.transform.position);
+        }
+
         Cursor.visible = false;
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Crosshair.position = new Vector3(mousePosition.x, mousePosition.y, 0);
@@ -82,14 +92,26 @@ public class TractorBeam : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-//            Vector2 position = new Vector2(transform.position.x, transform.position.y);
             Vector2 tdir;
             if (Target)
-                tdir = Target.transform.position - transform.position;
+            {
+                Vector2 target = new Vector2((transform.position.x + Target.transform.position.x) / 2,
+                                             (transform.position.y + Target.transform.position.y) / 2);
+                m_centerRay = Vector2.SmoothDamp(m_centerRay, target, ref m_centerRayVelocity, m_centerRaySmoothness);
+                tdir        = Target.transform.position - transform.position;
+
+                if (m_temporaryBlackHole == null)
+                    m_temporaryBlackHole =
+                        Instantiate(m_blackHolePrefab, Target.transform.position, Quaternion.identity);
+            }
             else
+            {
+                m_centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
+                                          (transform.position.y + mousePosition.y) / 2);
                 tdir = mousePosition - transform.position;
-            Vector2 target = new Vector2((transform.position.x + mousePosition.x) / 2, (transform.position.y + mousePosition.y) / 2);
-            m_centerRay = Vector2.SmoothDamp(m_centerRay, target, ref m_centerRayVelocity, m_centerRaySmoothness);
+            }
+
+
             ShootBeamInDir(transform.position, tdir);
 
             if (Target)
@@ -101,7 +123,8 @@ public class TractorBeam : MonoBehaviour
         else if (!Input.GetMouseButton(0))
         {
             Target = null;
-            m_centerRay = new Vector2((transform.position.x + mousePosition.x) / 2, (transform.position.y + mousePosition.y) / 2);
+            m_centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
+                                      (transform.position.y + mousePosition.y) / 2);
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -109,6 +132,22 @@ public class TractorBeam : MonoBehaviour
             Destroy(beamStart);
             Destroy(beamEnd);
             Destroy(beam);
+            Destroy(m_temporaryBlackHole);
+        }
+
+        if (m_temporaryBlackHole != null && Target != null)
+        {
+            m_temporaryBlackHole.transform.position =
+                new Vector3(Target.transform.position.x, Target.transform.position.y, 2);
+        }
+
+        if (m_distanceTarget > MaxLengthRay)
+        {
+            Target = null;
+            Destroy(beamStart);
+            Destroy(beamEnd);
+            Destroy(beam);
+            Destroy(m_temporaryBlackHole);
         }
     }
 
@@ -135,15 +174,12 @@ public class TractorBeam : MonoBehaviour
 
         Debug.DrawRay(start, dir, Color.red);
 
-
-
-
         line.SetPosition(1, m_centerRay);
 
         beamEnd.transform.position = end;
         line.SetPosition(2, end);
 
-        beamStart.transform.LookAt(beamEnd.transform.position);
+        beamStart.transform.LookAt(m_centerRay);
         beamEnd.transform.LookAt(beamStart.transform.position);
 
         float distance = Vector3.Distance(start, end);

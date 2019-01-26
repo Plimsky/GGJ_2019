@@ -252,18 +252,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f109b74f7296ca48bdc9f79c5c34ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxLengthRay: 10
   Crosshair: {fileID: 0}
   Mask:
     serializedVersion: 2
     m_Bits: 256
   Target: {fileID: 0}
   DragForce: 0.12
-  beamEndOffset: 1
+  beamEndOffset: 0
   textureScrollSpeed: 8
   textureLengthScale: 3
-  beamLineRendererPrefab: []
-  beamStartPrefab: []
-  beamEndPrefab: []
+  beamLineRendererPrefab:
+  - {fileID: 1773250190492750, guid: f4e37925a54636e4293491c991143948, type: 3}
+  beamStartPrefab:
+  - {fileID: 1450890654167080, guid: 864c4fff065664a458869a3f6fe0057b, type: 3}
+  beamEndPrefab:
+  - {fileID: 1124451057500510, guid: 59b8686ac2191c145aa7aeb4f3ee4f37, type: 3}
+  m_centerRaySmoothness: 0.4
 --- !u!114 &5754428537888179567
 MonoBehaviour:
   m_ObjectHideFlags: 0

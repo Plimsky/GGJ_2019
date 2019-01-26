@@ -450,4 +450,6 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
+.vscode
+
 # End of https://www.gitignore.io/api/rider,unity,visualstudio

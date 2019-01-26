@@ -8,6 +8,7 @@ TagManager:
   - Environment/Waste_mini
   - Enemy/Bullet_standard
   - Environment/Warper
+  - Collectibles/BatteryPack
   layers:
   - Default
   - TransparentFX

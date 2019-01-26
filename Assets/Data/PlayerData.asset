@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxLife: 100
   m_maxBattery: 100
-  m_life: 100
-  m_battery: 0
+  m_life: 88
+  m_battery: 100
   m_fragments: 0
   m_enemyDestroyed: 0

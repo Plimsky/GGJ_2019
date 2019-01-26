@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sandbox/lilian_g.unity
+    path: Assets/Scenes/UI/lilian_g.unity
     guid: 3f41f9e270067ae4f8a10167da9654ac
   - enabled: 1
     path: Assets/Scenes/Sandbox/vincent_n.unity

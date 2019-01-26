@@ -17,6 +17,8 @@ public class WasteBehaviour : MonoBehaviour
     [SerializeField] private float m_mortalTime = 3.0f;
     [SerializeField] private float m_trackedTime = 1.0f;
     [SerializeField] private float m_velocityLimitForBeingMortal = 1f;
+    [SerializeField] private GameObject m_particles;
+    [SerializeField] private GameObject m_particles2;
 
 
     private Rigidbody2D m_rigidbody;
@@ -25,6 +27,8 @@ public class WasteBehaviour : MonoBehaviour
     private void Awake()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
+        m_particles.SetActive(false);
+        m_particles2.SetActive(false);
     }
 
     private void Update()
@@ -46,6 +50,17 @@ public class WasteBehaviour : MonoBehaviour
 
         if (m_life <= 0)
             Destroy(gameObject);
+
+        if (m_state == WasteState.MORTAL)
+        {
+            m_particles.SetActive(true);
+            m_particles2.SetActive(true);
+        }
+        else
+        {
+            m_particles.SetActive(false);
+            m_particles2.SetActive(false);
+        }
     }
 
     private IEnumerator ResetToFreeState()

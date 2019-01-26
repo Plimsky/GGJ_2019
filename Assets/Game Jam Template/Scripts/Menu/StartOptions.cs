@@ -23,7 +23,7 @@ public class StartOptions : MonoBehaviour {
 	private float fastFadeIn = .01f;									//Very short fade time (10 milliseconds) to start playing music immediately without a click/glitch
 	private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
     private CanvasGroup menuCanvasGroup;
-
+    private GameObject FadeImage;
 
     void Awake()
 	{
@@ -37,6 +37,8 @@ public class StartOptions : MonoBehaviour {
         menuCanvasGroup = GetComponent<CanvasGroup>();
 
         fadeImage.color = menuSettingsData.sceneChangeFadeColor;
+
+        SceneManager.sceneLoaded += StartGameInScene;
 	}
 
 
@@ -60,11 +62,11 @@ public class StartOptions : MonoBehaviour {
         } 
 
 		//If changeScenes is false, call StartGameInScene
-		else 
-		{
-			//Call the StartGameInScene function to start game without loading a new scene.
-			StartGameInScene();
-		}
+		//else 
+		//{
+		//	//Call the StartGameInScene function to start game without loading a new scene.
+		//	StartGameInScene();
+		//}
 
 	}
 
@@ -107,19 +109,23 @@ public class StartOptions : MonoBehaviour {
 		showPanels.HideMenu();
 	}
 
-	public void StartGameInScene()
+	public void StartGameInScene(Scene scene, LoadSceneMode mode)
 	{
-		//Pause button now works if escape is pressed since we are no longer in Main menu.
-		inMainMenu = false;
+        if (scene.buildIndex != 0)
+        {
+            //Pause button now works if escape is pressed since we are no longer in Main menu.
+            inMainMenu = false;
 
-		//If there is a second music clip in MenuSettings, fade out volume of music group of AudioMixer by calling FadeDown function of PlayMusic 
-		if (menuSettingsData.musicLoopToChangeTo != null) 
-		{
-			//Wait until game has started, then play new music
-			Invoke ("PlayNewMusic", menuSettingsData.menuFadeTime);
-		}
-        
-        StartCoroutine(FadeCanvasGroupAlpha(1f,0f, menuCanvasGroup));
+            //If there is a second music clip in MenuSettings, fade out volume of music group of AudioMixer by calling FadeDown function of PlayMusic 
+            if (menuSettingsData.musicLoopToChangeTo != null)
+            {
+                //Wait until game has started, then play new music
+                Invoke("PlayNewMusic", menuSettingsData.menuFadeTime);
+            }
+
+            StartCoroutine(FadeCanvasGroupAlpha(1f, 0f, menuCanvasGroup));
+            fadeImage.gameObject.SetActive(false);
+        }
 	}
 
     public IEnumerator FadeCanvasGroupAlpha(float startAlpha, float endAlpha, CanvasGroup canvasGroupToFadeAlpha)

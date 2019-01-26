@@ -69,6 +69,7 @@ public class ShowPanels : MonoBehaviour {
 		pausePanel.SetActive (true);
 		optionsTint.SetActive(true);
         SetSelection(pausePanel);
+        GetComponent<CanvasGroup>().alpha = 1;
     }
 
 	//Call this function to deactivate and hide the Pause panel during game play
@@ -77,5 +78,7 @@ public class ShowPanels : MonoBehaviour {
 		pausePanel.SetActive (false);
 		optionsTint.SetActive(false);
 
-	}
+
+        GetComponent<CanvasGroup>().alpha = 0;
+    }
 }

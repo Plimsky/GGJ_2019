@@ -260,7 +260,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3870545756422687152
+--- !u!1001 &3093198290412324848
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -271,6 +271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870545756246092986, guid: 33d197df55aa6be499c9fa724a5771d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3870545756246092990, guid: 33d197df55aa6be499c9fa724a5771d2,
         type: 3}
@@ -387,39 +392,15 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3870545756992384965, guid: 33d197df55aa6be499c9fa724a5771d2,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 6ca507cc92af07248a7d7eca7a90c200,
-        type: 2}
-    - target: {fileID: 3870545756992384965, guid: 33d197df55aa6be499c9fa724a5771d2,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 21665692398489496, guid: 6ca507cc92af07248a7d7eca7a90c200,
-        type: 2}
-    - target: {fileID: 3870545756997929482, guid: 33d197df55aa6be499c9fa724a5771d2,
+    - target: {fileID: 3093198290098175784, guid: 33d197df55aa6be499c9fa724a5771d2,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3870545756997929482, guid: 33d197df55aa6be499c9fa724a5771d2,
+    - target: {fileID: 3093198290098175784, guid: 33d197df55aa6be499c9fa724a5771d2,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3870545756997929482, guid: 33d197df55aa6be499c9fa724a5771d2,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 6ca507cc92af07248a7d7eca7a90c200,
-        type: 2}
-    - target: {fileID: 3870545756997929482, guid: 33d197df55aa6be499c9fa724a5771d2,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 21665692398489496, guid: 6ca507cc92af07248a7d7eca7a90c200,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d197df55aa6be499c9fa724a5771d2, type: 3}

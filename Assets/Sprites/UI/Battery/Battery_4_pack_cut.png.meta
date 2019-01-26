@@ -6,6 +6,11 @@ TextureImporter:
     21300002: Battery_4_pack_cut_1
     21300004: Battery_4_pack_cut_2
     21300006: Battery_4_pack_cut_3
+    21300008: Battery_4_Pack_Cut_0
+    21300010: Battery_4_Pack_Cut_1
+    21300012: Battery_4_Pack_Cut_2
+    21300014: Battery_4_Pack_Cut_3
+    21300016: Battery_4_Pack_Cut_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -88,10 +93,30 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Battery_4_pack_cut_0
+      name: Battery_4_Pack_Cut_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
+        y: 112
+        width: 282
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60707dfd96ace1b419d8c3aaa850e67e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battery_4_Pack_Cut_1
+      rect:
+        serializedVersion: 2
+        x: 336
         y: 111
         width: 282
         height: 418
@@ -102,16 +127,16 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e66396e7be493a849894ef7e9e3bbb5d
+      spriteID: 5e5fc326f90225e478481a19a0162203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Battery_4_pack_cut_1
+      name: Battery_4_Pack_Cut_2
       rect:
         serializedVersion: 2
-        x: 331
+        x: 667
         y: 111
         width: 285
         height: 418
@@ -122,16 +147,16 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff2886fddc4e1694db077ec6a8d0bbd2
+      spriteID: 17a6ac85c2ac4744b97812d1de8376b2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Battery_4_pack_cut_2
+      name: Battery_4_Pack_Cut_3
       rect:
         serializedVersion: 2
-        x: 664
+        x: 1000
         y: 111
         width: 285
         height: 418
@@ -142,16 +167,16 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d40a1a29327f9d144801ecb783ae6ea9
+      spriteID: 863a6df0549ae7d46b9b0f57bc7e2700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Battery_4_pack_cut_3
+      name: Battery_4_Pack_Cut_4
       rect:
         serializedVersion: 2
-        x: 998
+        x: 1334
         y: 111
         width: 282
         height: 418
@@ -162,7 +187,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e60101a5bbda28440944fc7062d2e4ad
+      spriteID: 30e4abe86ac640b40a6f9976ad335d73
       vertices: []
       indices: 
       edges: []

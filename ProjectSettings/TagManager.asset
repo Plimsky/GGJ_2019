@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Collectibles/Fragment
+  - Environment/Waste_mini
+  - Enemy/Bullet_standard
   layers:
   - Default
   - TransparentFX
@@ -39,6 +41,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2327011607
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2034488569
+    locked: 0
+  - name: Enemies
+    uniqueID: 1173156753
+    locked: 0
+  - name: Items
+    uniqueID: 656746557
+    locked: 0
+  - name: Shoot
+    uniqueID: 4138890413
+    locked: 0
+  - name: Foreground
+    uniqueID: 1107268465
     locked: 0

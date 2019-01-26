@@ -46,6 +46,8 @@ public class TractorBeam : MonoBehaviour
             if (hit)
             {
                 Target = hit.collider.gameObject;
+                if (Target.GetComponent<WasteBehaviour>() != null)
+                    Target.GetComponent<WasteBehaviour>().m_state = WasteBehaviour.WasteState.TRACKED;
             }
 
             if (Target)

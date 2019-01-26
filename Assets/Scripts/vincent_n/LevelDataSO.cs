@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelData", menuName = "Levels", order = 1)]
+[CreateAssetMenu(fileName = "LevelData", menuName = "Scritpable Objects/Levels", order = 1)]
 public class LevelDataSO : ScriptableObject
 {
     public int m_totalFragments;

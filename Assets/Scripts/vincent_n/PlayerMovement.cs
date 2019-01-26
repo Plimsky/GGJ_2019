@@ -3,7 +3,6 @@
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float m_speed = 50.0f;
-//    [SerializeField] private float m_maxSpeed = 1000f;
     private Rigidbody2D m_rigidbody;
     private Vector2 m_velocity;
 

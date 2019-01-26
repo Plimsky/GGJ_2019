@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1682738080}
   - component: {fileID: 4675504469993766250}
   m_Layer: 2
-  m_Name: CollectibleTriger
+  m_Name: Detectors
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135c21ccb52099f4085626c7cb1ad51e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerData: {fileID: 11400000, guid: 74916c3a2c32f8b419d8608238675b54, type: 2}
   m_fragmentTag: Collectibles/Fragment
 --- !u!1 &8079759423776004340
 GameObject:
@@ -105,10 +106,10 @@ GameObject:
   - component: {fileID: 6705864338452723832}
   - component: {fileID: 2848951585016629197}
   - component: {fileID: 8079759423776004343}
-  - component: {fileID: 1035622746923286122}
   - component: {fileID: 8079759423776004341}
   - component: {fileID: 8079759423776004342}
   - component: {fileID: 5754428537888179567}
+  - component: {fileID: 676377204712077684}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -165,8 +166,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2034488569
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300012, guid: 8d18f6d2b73e89b4882fbf3bb5aedb4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -226,21 +227,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.19552511, y: 0.30686823}
   m_EdgeRadius: 0
---- !u!114 &1035622746923286122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8079759423776004340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 746f0cbdc737694478b81b66452366bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_life: 0
-  m_fragments: 0
-  m_enemyDestroyed: 0
 --- !u!114 &8079759423776004341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +257,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   Target: {fileID: 0}
-  DragForce: 0.08
+  DragForce: 0.12
 --- !u!114 &5754428537888179567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,3 +271,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 0}
+--- !u!114 &676377204712077684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079759423776004340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8cc3b34cad3704aa6718ec24f5b8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerData: {fileID: 11400000, guid: 74916c3a2c32f8b419d8608238675b54, type: 2}
+  m_velocityMagnitudeForDamage: 1
+  m_tagListHit:
+  - Environment/Waste_mini
+  - Enemy/Bullet_standard

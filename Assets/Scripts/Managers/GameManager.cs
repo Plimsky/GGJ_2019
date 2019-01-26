@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start() { }
+    private int m_lvlIndex = 0;
+    [SerializeField] private List<LevelDataSO> m_lvlList = new List<LevelDataSO>();
 
-    // Update is called once per frame
-    void Update() { }
+    public Action OnNextLevel;
+
+
 }

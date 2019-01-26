@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0e5c2b1c410bf34ebdd91ba8ce07044
+guid: eb16f1188df148a4baa9719a8a915bb0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -12,9 +12,9 @@ TrueTypeFontImporter:
   fontNames:
   - Robotronica
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 06a9ab412aeccb847b6882b63b7dda84, type: 3}
-  - {fileID: 12800000, guid: d1ac60e40fed6db44b56b40947107968, type: 3}
-  - {fileID: 12800000, guid: 2264273e2f62b24418786c6d76487aa6, type: 3}
+  - {fileID: 12800000, guid: a67769d5c6894a6419c6e2c2912beeb7, type: 3}
+  - {fileID: 12800000, guid: 83ba44a7ac5c7b54796e3863f23b0e73, type: 3}
+  - {fileID: 12800000, guid: abc763b8c64a061479fb63e8d9c13548, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1682738079}
   - component: {fileID: 4675504469993766250}
   - component: {fileID: 1682738080}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CollectibleTriger
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -107,7 +107,9 @@ GameObject:
   - component: {fileID: 5754428537888179567}
   - component: {fileID: 8079759423776004341}
   - component: {fileID: 8079759423776004343}
-  m_Layer: 0
+  - component: {fileID: 1035622746923286122}
+  - component: {fileID: 8079759423776004342}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -250,3 +252,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.19552511, y: 0.30686823}
   m_EdgeRadius: 0
+--- !u!114 &1035622746923286122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079759423776004340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746f0cbdc737694478b81b66452366bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_life: 0
+  m_fragments: 0
+  m_enemyDestroyed: 0
+--- !u!114 &8079759423776004342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079759423776004340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f109b74f7296ca48bdc9f79c5c34ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Crosshair: {fileID: 0}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 256
+  Target: {fileID: 0}
+  DragForce: 0.08

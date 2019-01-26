@@ -20,6 +20,7 @@ namespace Managers
 
         [SerializeField] private List<LevelDataSO> m_lvlList = new List<LevelDataSO>();
         [SerializeField] private PlayerDataSO      m_playerData;
+        [SerializeField] private GameObject        m_warper;
         public                   Action            OnNextLevel;
 
         private int m_lvlIndex = 0;
@@ -27,6 +28,10 @@ namespace Managers
         private void Awake()
         {
             m_state = GameState.RUN;
+            m_warper = GameObject.FindGameObjectWithTag("Environment/Warper");
+
+            if (m_warper != null)
+                m_warper.SetActive(false);
 
             if (instance == null)
             {
@@ -50,7 +55,7 @@ namespace Managers
         private void CheckFragments()
         {
             if (m_playerData.m_fragments >= m_lvlList[m_lvlIndex].m_minimalFragments)
-                Debug.Log("CAN JUMP OMG");
+                m_warper.SetActive(true);
 
             if (m_playerData.m_fragments == m_lvlList[m_lvlIndex].m_totalFragments)
                 Debug.Log("YOU'VE GOT ALL FRAGMENTS");
@@ -63,6 +68,15 @@ namespace Managers
                 m_state = GameState.DEAD;
                 Debug.Log("YOU'RE DEAD");
             }
+        }
+
+        public void NextLevel()
+        {
+            Debug.Log("Loading Next Level");
+            if (OnNextLevel != null)
+                OnNextLevel();
+
+            m_lvlIndex++;
         }
     }
 }

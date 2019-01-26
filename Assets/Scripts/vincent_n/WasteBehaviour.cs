@@ -13,9 +13,11 @@ public class WasteBehaviour : MonoBehaviour
     public WasteState m_state;
     public int m_life = 5;
     public int m_damageValue = 10;
+    public float m_dragForce = 0.5f;
     [SerializeField] private float m_mortalTime = 3.0f;
     [SerializeField] private float m_trackedTime = 1.0f;
     [SerializeField] private float m_velocityLimitForBeingMortal = 1f;
+
 
     private Rigidbody2D m_rigidbody;
     private bool m_timerStarted;
@@ -35,7 +37,7 @@ public class WasteBehaviour : MonoBehaviour
         }
         if (m_rigidbody.velocity.magnitude < m_velocityLimitForBeingMortal && m_state == WasteState.MORTAL)
             m_state = WasteState.FREE;
-        
+
         if (m_state == WasteState.MORTAL && !m_timerStarted)
             StartCoroutine("ResetToFreeState", m_mortalTime);
 

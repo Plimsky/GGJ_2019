@@ -141,7 +141,7 @@ public class PolygonBeamScript : MonoBehaviour {
             end = transform.position + (dir * 100);
 
         beamEnd.transform.position = end;
-        line.SetPosition(1, end);
+        line.SetPosition(2, end);
 
         beamStart.transform.LookAt(beamEnd.transform.position);
         beamEnd.transform.LookAt(beamStart.transform.position);

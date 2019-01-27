@@ -67,7 +67,6 @@ namespace Managers
             if (m_state != GameState.DEAD)
             {
                 CheckFragments();
-//                CheckEnemies();
             }
         }
 
@@ -94,6 +93,7 @@ namespace Managers
             {
                 m_state = GameState.DEAD;
                 SceneManager.LoadScene(m_lvlIndex + 1);
+                m_playerData.Reset();
             }
         }
 

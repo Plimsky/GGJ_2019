@@ -81,6 +81,9 @@ public class TractorBeam : MonoBehaviour
 
             if (hit)
             {
+                if(AudioManager.instance != null)
+                   AudioManager.instance.SetIsBeamActivated(true);
+
                 Target = hit.collider.gameObject;
                 if (Target.GetComponent<WasteBehaviour>() != null)
                 {
@@ -136,6 +139,9 @@ public class TractorBeam : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            if (AudioManager.instance != null)
+                AudioManager.instance.SetIsBeamActivated(false);
+
             Destroy(beamStart);
             Destroy(beamEnd);
             Destroy(beam);

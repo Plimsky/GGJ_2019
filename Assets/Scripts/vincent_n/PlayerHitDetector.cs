@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Managers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,6 +49,9 @@ public class PlayerHitDetector : MonoBehaviour
                         wasteBehaviourScript.m_state == WasteBehaviour.WasteState.MORTAL && !m_isInvulnerable)
                     {
                         Debug.Log("HIT");
+                        if (AudioManager.instance != null)
+                            AudioManager.instance.SetIsCollision(true);
+
                         wasteBehaviourScript.m_life--;
                         m_playerData.m_life -= wasteBehaviourScript.m_damageValue;
 
@@ -110,6 +114,12 @@ public class PlayerHitDetector : MonoBehaviour
 
             StartCoroutine("SparksIntervale", m_sparksIntervale);
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (AudioManager.instance != null)
+            AudioManager.instance.SetIsCollision(false);
     }
 
     private IEnumerator ResetToFreeState()

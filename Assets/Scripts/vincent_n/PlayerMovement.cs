@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_smoothBodyPlayerRotation = 1.0f;
 
     private Rigidbody2D m_rigidbody;
-    private Vector2 m_velocity;
 
     private void Start()
     {
@@ -20,10 +19,14 @@ public class PlayerMovement : MonoBehaviour
         Vector2 playerDirection = Vector2.zero;
 
         if (AudioManager.instance != null && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
+        {
             AudioManager.instance.SetIsPropulsion(true);
+            AudioManager.instance.SetVolume(AudioManager.instance.m_AmbientMusicAudioSource, (Mathf.Abs(m_rigidbody.velocity.normalized.x) + Mathf.Abs(m_rigidbody.velocity.normalized.y)) / 2);
+        }
         else if (AudioManager.instance != null && (Input.GetAxis("Horizontal") == 0 || Input.GetAxis("Vertical") == 0))
+        {
             AudioManager.instance.SetIsPropulsion(false);
-
+        }
         playerDirection.x = Input.GetAxis("Horizontal");
         playerDirection.y = Input.GetAxis("Vertical");
 

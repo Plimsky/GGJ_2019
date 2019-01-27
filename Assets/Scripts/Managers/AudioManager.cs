@@ -8,19 +8,23 @@ namespace Managers
     public class AudioManager : MonoBehaviour
     {
         [HideInInspector] public static AudioManager instance;
-        [Header("AudioSources")]
+        [Header("FX AudioSources")]
         public AudioSource m_introAudioSource;
         public AudioSource m_loopAudioSource;
         public AudioSource m_OneShotAudioSource;
         public AudioSource m_EngineAudioSource;
+        [Header("Music AudioSources")]
+        public AudioSource m_AmbientMusicAudioSource;
 
-        [Header("AudioClips")]
+        [Header("FX AudioClips")]
         public AudioClip beamStartClip;
         public AudioClip beamLoopClip;
         public AudioClip propulsionSound;
         public AudioClip powerUpClip;
         public AudioClip[] collisionClips;
         public AudioClip explosionClip;
+        [Header("Music AudioClips")]
+        public AudioClip AmbientMusicClip;
 
         private bool m_isBeamActivated = false;
         private bool m_isBeamPlaying = false;
@@ -32,6 +36,7 @@ namespace Managers
         private bool m_isPowerUpPlaying = false;
         private bool m_isExplosionPlaying = false;
         private bool m_isExplosion = false;
+        private bool m_isMusicPlaying = false;
 
         private void Awake()
         {
@@ -49,14 +54,16 @@ namespace Managers
                 return;
             }
 
-            CheckBeam();
-            CheckCollision();
-            CheckExplosion();
-            CheckPowerUp();
-            CheckPropulsion();
+            UpdateBeam();
+            UpdateCollision();
+            UpdateExplosion();
+            UpdatePowerUp();
+            UpdatePropulsion();
+            UpdateMusic();
+            
         }
 
-        private void CheckBeam()
+        private void UpdateBeam()
         {
             if (m_isBeamActivated && !m_isBeamPlaying)
                 StartBeam();
@@ -68,7 +75,7 @@ namespace Managers
             }
         }
 
-        private void CheckCollision()
+        private void UpdateCollision()
         {
             if (!m_isExplosion && m_isCollision && !m_isCollisionPlaying)
             {
@@ -80,7 +87,7 @@ namespace Managers
         }
 
 
-        private void CheckPropulsion()
+        private void UpdatePropulsion()
         {
             if (m_isPropulsion && !m_isPropulsionPlaying)
             {
@@ -94,14 +101,14 @@ namespace Managers
         }
 
 
-        private void CheckPowerUp()
+        private void UpdatePowerUp()
         {
             if (m_isPowerUp && !m_isPowerUpPlaying)
             {
                 PlaySoundOnce(powerUpClip);
                 m_isPowerUpPlaying = true;
             }
-            else if (m_isPowerUpPlaying && !m_OneShotAudioSource.isPlaying)
+            else if (m_isPowerUpPlaying)
             {
                 m_isPowerUp = false;
                 m_isPowerUpPlaying = false;
@@ -109,7 +116,7 @@ namespace Managers
         }
 
 
-        private void CheckExplosion()
+        private void UpdateExplosion()
         {
             if (m_isExplosion && !m_isExplosionPlaying)
             {
@@ -120,6 +127,17 @@ namespace Managers
             {
                 m_isExplosionPlaying = false;
                 m_isExplosion = false;
+            }
+        }
+
+        private void UpdateMusic()
+        {
+            if (m_isMusicPlaying == false)
+            {
+                m_isMusicPlaying = true;
+                m_AmbientMusicAudioSource.loop = true;
+                m_AmbientMusicAudioSource   .clip = AmbientMusicClip;
+                m_AmbientMusicAudioSource.Play();
             }
         }
 
@@ -139,6 +157,7 @@ namespace Managers
         {
             m_EngineAudioSource.clip = propulsionSound;
             m_EngineAudioSource.Play();
+            m_EngineAudioSource.loop = true;
             m_isPropulsionPlaying = true;
         }
 
@@ -180,6 +199,11 @@ namespace Managers
         public void SetIsExplosion(bool p_ie)
         {
             m_isExplosion = p_ie;
+        }
+
+        public void SetVolume (AudioSource p_audioSource, float p_volume)
+        {
+            p_audioSource.volume = p_volume;
         }
     }
 }

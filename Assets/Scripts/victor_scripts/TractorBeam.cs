@@ -93,7 +93,6 @@ public class TractorBeam : MonoBehaviour
                 {
                     DragForce                                     = Target.GetComponent<WasteBehaviour>().m_dragForce;
                     Target.GetComponent<WasteBehaviour>().m_state = WasteBehaviour.WasteState.TRACKED;
-                    m_playerData.m_battery -= m_decrementBatteryValue;
                 }
             }
         }

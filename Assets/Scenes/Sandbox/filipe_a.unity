@@ -467,40 +467,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8741205274618608211, guid: f94dfa3fecd2a7041891fb24a21271dc,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
-      propertyPath: m_explosionPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
-      propertyPath: m_explosionPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 1279064898749148, guid: 42ed8dddf299960458c81cbd0c813dc2,
-        type: 3}
-    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
-      propertyPath: m_explosionPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1424388112719170, guid: 0bb2dd3b77fbcd047860dde6f603ee04,
-        type: 3}
-    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
-      propertyPath: m_explosionPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 1380083432330736, guid: 6aedd83ba88c4d142855a765beeaa26e,
-        type: 3}
-    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
-      propertyPath: m_explosionPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1070101629368536, guid: 23e068c82bd47204ab59866df12f738b,
-        type: 3}
-    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
-      propertyPath: m_explosionPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 1052214234485304, guid: 03f8965833e00064c817b50b867f7663,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
 --- !u!1001 &809346875
@@ -1640,15 +1606,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: powerUpClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6c22e2274ac07a649aedc28b03fc6d39, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: explosionClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3a59e0909c745084ab5169883aea2741, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4c860d24dd8fa24887e63ef9aae1a55, type: 3}

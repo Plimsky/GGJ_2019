@@ -44,14 +44,16 @@ namespace Managers
 
         private void Update()
         {
+            if (m_EngineAudioSource == null || m_introAudioSource == null || m_loopAudioSource == null || m_OneShotAudioSource == null)
+            {
+                return;
+            }
+
             CheckBeam();
             CheckCollision();
             CheckExplosion();
             CheckPowerUp();
             CheckPropulsion();
-
-            
-            
         }
 
         private void CheckBeam()

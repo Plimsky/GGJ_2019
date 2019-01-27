@@ -18,7 +18,8 @@ public class PlayerCollectibleDetector : MonoBehaviour
             m_playerData.m_fragments++;
             GameManager.instance.OnUpdateStats();
             Instantiate(m_powerUpPrefabs[1], transform.position, Quaternion.identity, gameObject.transform);
-            AudioManager.instance.SetIsPowerUp(true);
+            if(AudioManager.instance != null)
+               AudioManager.instance.SetIsPowerUp(true);
             Destroy(other.gameObject);
         }
         else if(other.gameObject.CompareTag(m_batteryTag))
@@ -27,7 +28,8 @@ public class PlayerCollectibleDetector : MonoBehaviour
             {
                 m_playerData.m_battery += 10;
                 GameManager.instance.OnUpdateStats();
-                AudioManager.instance.SetIsPowerUp(true);
+                if (AudioManager.instance != null)
+                    AudioManager.instance.SetIsPowerUp(true);
                 Instantiate(m_powerUpPrefabs[0], transform.position, Quaternion.identity, gameObject.transform);
                 Debug.Log("hit");
                 Destroy(other.gameObject);

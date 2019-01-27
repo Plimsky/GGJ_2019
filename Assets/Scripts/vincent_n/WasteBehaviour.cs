@@ -62,7 +62,8 @@ public class WasteBehaviour : MonoBehaviour
 
         if (m_life <= 0)
         {
-            AudioManager.instance.SetIsExplosion(true);
+            if (AudioManager.instance != null)
+                AudioManager.instance.SetIsExplosion(true);
             Instantiate(m_explosionPrefabs[Random.Range(0, m_explosionPrefabs.Count - 1)], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

@@ -106,8 +106,11 @@ public class TractorBeam : MonoBehaviour
                 tdir        = Target.transform.position - transform.position;
 
                 if (m_temporaryBlackHole == null)
+                {
                     m_temporaryBlackHole =
-                        Instantiate(m_blackHolePrefab, Target.transform.position, Quaternion.identity);
+                        Instantiate(m_blackHolePrefab,Target.transform.position, Quaternion.identity);
+                    m_temporaryBlackHole.transform.localScale = transform.localScale * 2;
+                }
             }
             else
             {
@@ -153,7 +156,7 @@ public class TractorBeam : MonoBehaviour
         if (m_temporaryBlackHole != null && Target != null)
         {
             m_temporaryBlackHole.transform.position =
-                new Vector3(Target.transform.position.x, Target.transform.position.y, 2);
+                new Vector3(Target.transform.position.x, Target.transform.position.y, -1);
         }
 
         if (m_distanceTarget > MaxLengthRay)

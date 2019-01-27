@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         {
             AudioManager.instance.SetIsPropulsion(true);
             AudioManager.instance.SetVolume(AudioManager.instance.m_AmbientMusicAudioSource, (Mathf.Abs(m_rigidbody.velocity.normalized.x) + Mathf.Abs(m_rigidbody.velocity.normalized.y)) / 2);
-        }
             m_movingBeam.SetActive(true);
         }
         else if (AudioManager.instance != null && (Input.GetAxis("Horizontal") == 0 || Input.GetAxis("Vertical") == 0))

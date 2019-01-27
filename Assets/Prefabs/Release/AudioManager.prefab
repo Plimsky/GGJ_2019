@@ -532,7 +532,7 @@ MonoBehaviour:
   m_loopAudioSource: {fileID: 7214712116220511898}
   m_OneShotAudioSource: {fileID: 7214712116220511897}
   m_EngineAudioSource: {fileID: 1173963941751889520}
-  m_AmbianceMusicAudioSource: {fileID: 5374463725419944046}
+  m_AmbientMusicAudioSource: {fileID: 5374463725419944046}
   beamStartClip: {fileID: 8300000, guid: f724eb85ce7b7ea4da6f91313954bc1c, type: 3}
   beamLoopClip: {fileID: 8300000, guid: 455147c60e7efad4f82d9d9045de7aec, type: 3}
   propulsionSound: {fileID: 8300000, guid: 395fad010166a224d9fcb9a4bc35d2b3, type: 3}
@@ -546,3 +546,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afb015bedcd4e09478147b5ace2ef720, type: 3}
   - {fileID: 8300000, guid: a065e2af9e1b6c64291b0fb8ba7ff563, type: 3}
   explosionClip: {fileID: 8300000, guid: 3a59e0909c745084ab5169883aea2741, type: 3}
+  AmbientMusicClip: {fileID: 8300000, guid: 87c836fc349a6994a929094e6c5996d4, type: 3}

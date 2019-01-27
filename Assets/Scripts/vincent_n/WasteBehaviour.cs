@@ -22,8 +22,6 @@ public class WasteBehaviour : MonoBehaviour
     [SerializeField] private GameObject m_particles2;
 
     [SerializeField] private List<GameObject> m_explosionPrefabs;
-    private GameObject m_temporaryExplosion;
-
 
     private Rigidbody2D m_rigidbody;
     private bool m_timerStarted;
@@ -34,6 +32,8 @@ public class WasteBehaviour : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_particles.SetActive(false);
         m_particles2.SetActive(false);
+        m_particles.transform.localScale = transform.localScale / 4;
+        m_particles2.transform.localScale = transform.localScale / 4;
     }
 
     private void Update()
@@ -61,8 +61,8 @@ public class WasteBehaviour : MonoBehaviour
 
         if (m_life <= 0)
         {
+            Instantiate(m_explosionPrefabs[Random.Range(0, m_explosionPrefabs.Count - 1)], transform.position, Quaternion.identity);
             Destroy(gameObject);
-            m_temporaryExplosion = Instantiate(m_explosionPrefabs[Random.Range(0, m_explosionPrefabs.Count - 1)], transform.position, Quaternion.identity);
         }
 
 

@@ -15,20 +15,23 @@ namespace Managers
 
     public class GameManager : MonoBehaviour
     {
-        [HideInInspector] public static GameManager instance;
-        [HideInInspector] public        GameState   m_state;
+        public static GameManager instance;
 
+        [HideInInspector] public GameState m_state;
+
+        [Header("Level Management")]
         [SerializeField] private List<LevelDataSO> m_lvlList = new List<LevelDataSO>();
         [SerializeField] private PlayerDataSO      m_playerData;
+        [SerializeField] private GameObject        m_player;
         [SerializeField] private GameObject        m_warper;
+        [SerializeField] private GameObject        m_targetArrowPrefab;
         public                   Action            OnNextLevel;
 
         private int m_lvlIndex = 0;
 
         private void Awake()
         {
-            m_state = GameState.RUN;
-            m_warper = GameObject.FindGameObjectWithTag("Environment/Warper");
+            m_state  = GameState.RUN;
 
             if (m_warper != null)
                 m_warper.SetActive(false);
@@ -45,6 +48,12 @@ namespace Managers
                 Destroy(gameObject);
         }
 
+        private void Start()
+        {
+            m_player = GameObject.FindGameObjectWithTag("Player");
+            m_warper = GameObject.FindGameObjectWithTag("Environment/Warper");
+        }
+
         public void OnUpdateStats()
         {
             CheckLife();
@@ -58,7 +67,13 @@ namespace Managers
         private void CheckFragments()
         {
             if (m_playerData.m_fragments >= m_lvlList[m_lvlIndex].m_minimalFragments)
+            {
                 m_warper.SetActive(true);
+                GameObject refTargetArrow =
+                    Instantiate(m_targetArrowPrefab, m_player.transform.position, Quaternion.identity);
+                refTargetArrow.GetComponent<targetArrow>().m_player = m_player.transform;
+                refTargetArrow.GetComponent<targetArrow>().m_target = m_warper.transform;
+            }
 
             if (m_playerData.m_fragments == m_lvlList[m_lvlIndex].m_totalFragments)
                 Debug.Log("YOU'VE GOT ALL FRAGMENTS");
@@ -69,7 +84,6 @@ namespace Managers
             if (m_playerData.m_life <= 0)
             {
                 m_state = GameState.DEAD;
-
             }
         }
 

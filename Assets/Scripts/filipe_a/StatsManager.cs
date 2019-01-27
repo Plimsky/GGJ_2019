@@ -45,7 +45,7 @@ public class StatsManager : MonoBehaviour
     {
         batteryPercentageValue = Mathf.Clamp(playerData.m_battery, 0, playerData.m_maxBattery);
         batteryPercentageText.text = batteryPercentageValue + "\n%";
-        batteryState = (batteryPercentageValue * 4 / playerData.m_maxBattery) + 1;
+        batteryState = (batteryPercentageValue * 6 / playerData.m_maxBattery) + 1;
         if (batteryPercentageValue <= 0) { batteryState = 0; }
 
         switch (batteryState)
@@ -62,9 +62,15 @@ public class StatsManager : MonoBehaviour
             case 3:                                            // 50 à 75 
                 batteryImage.sprite = batterySprites[3];
                 break;
-            case 4:                                            // 75 à 100
-            case 5:                                            // 100
+            case 4:                                            // 50 à 75 
                 batteryImage.sprite = batterySprites[4];
+                break;
+            case 5:                                            // 50 à 75 
+                batteryImage.sprite = batterySprites[5];
+                break;
+            case 6:                                            // 75 à 100
+            case 7:                                            // 100
+                batteryImage.sprite = batterySprites[6];
                 break;
             default:
                 Debug.Log("[Battery] current state not found. Cannot change UI Image");

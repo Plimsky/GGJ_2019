@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -50,7 +51,8 @@ namespace Managers
 
         private void Update()
         {
-            if (m_EngineAudioSource == null || m_introAudioSource == null || m_loopAudioSource == null || m_OneShotAudioSource == null)
+            if (m_EngineAudioSource == null || m_introAudioSource == null || m_loopAudioSource == null || m_OneShotAudioSource == null ||
+                SceneManager.GetActiveScene().buildIndex == 0)
             {
                 return;
             }

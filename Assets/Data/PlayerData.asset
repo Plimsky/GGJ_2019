@@ -16,5 +16,5 @@ MonoBehaviour:
   m_maxBattery: 100
   m_life: 100
   m_battery: 100
-  m_fragments: 3
+  m_fragments: 0
   m_enemyDestroyed: 0

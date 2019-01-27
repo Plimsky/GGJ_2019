@@ -44,7 +44,7 @@ public class StatsManager : MonoBehaviour
     void UpdateBattery()
     {
         batteryPercentageValue = Mathf.Clamp(playerData.m_battery, 0, playerData.m_maxBattery);
-        batteryPercentageText.text = batteryPercentageValue + "\n%";
+        batteryPercentageText.text = batteryPercentageValue + "%";
         batteryState = (batteryPercentageValue * 6 / playerData.m_maxBattery) + 1;
         if (batteryPercentageValue <= 0) { batteryState = 0; }
 
@@ -87,7 +87,7 @@ public class StatsManager : MonoBehaviour
     void UpdateLife()
     {
         lifePercentageValue = Mathf.Clamp(playerData.m_life, 0, playerData.m_maxLife);
-        lifePercentageText.text = lifePercentageValue + "\n%";
+        lifePercentageText.text = lifePercentageValue + "%";
         lifeState = (lifePercentageValue * 6 / playerData.m_maxLife) + 1;
         if (lifePercentageValue <= 0) { lifeState= 0; }
 

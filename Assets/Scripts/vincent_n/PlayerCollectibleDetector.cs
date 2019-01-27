@@ -17,8 +17,10 @@ public class PlayerCollectibleDetector : MonoBehaviour
     {
         if (other.gameObject.CompareTag(m_fragmentTag))
         {
+            Debug.Log("SAODINASDOIHNOIASDNOIASDNOIASDN");
             m_playerData.m_fragments++;
-            GameManager.instance.OnUpdateStats();
+            if (GameManager.instance != null)
+                GameManager.instance.OnUpdateStats();
             GameObject powerUp = Instantiate(m_powerUpPrefabs[1], transform.position, Quaternion.identity,
                                              gameObject.transform);
             powerUp.transform.localPosition -= Vector3.forward;

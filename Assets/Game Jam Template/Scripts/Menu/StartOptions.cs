@@ -25,6 +25,7 @@ public class StartOptions : MonoBehaviour {
 	private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
     private CanvasGroup menuCanvasGroup;
     private GameObject FadeImage;
+    private PlayMusic m_playMusicScript;
 
     void Awake()
 	{
@@ -36,6 +37,8 @@ public class StartOptions : MonoBehaviour {
 
         //Get a reference to the CanvasGroup attached to the main menu so that we can fade it's alpha
         menuCanvasGroup = GetComponent<CanvasGroup>();
+
+        m_playMusicScript = GetComponent<PlayMusic>();
 
         fadeImage.color = menuSettingsData.sceneChangeFadeColor;
 
@@ -145,6 +148,8 @@ public class StartOptions : MonoBehaviour {
 
         HideDelayed();
         Debug.Log("Coroutine done. Game started in same scene! Put your game starting stuff here.");
+
+        m_playMusicScript.FadeDown(totalDuration);
 
         fadeImage.gameObject.SetActive(disableFadeImage);
     }

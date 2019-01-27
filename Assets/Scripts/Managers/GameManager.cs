@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -20,18 +21,20 @@ namespace Managers
         [HideInInspector] public GameState m_state;
 
         [Header("Level Management")]
-        [SerializeField] private List<LevelDataSO> m_lvlList = new List<LevelDataSO>();
-        [SerializeField] private PlayerDataSO      m_playerData;
-        [SerializeField] private GameObject        m_player;
-        [SerializeField] private GameObject        m_warper;
-        [SerializeField] private GameObject        m_targetArrowPrefab;
-        public                   Action            OnNextLevel;
+        [SerializeField]
+        private List<LevelDataSO> m_lvlList = new List<LevelDataSO>();
+
+        [SerializeField] private PlayerDataSO m_playerData;
+        [SerializeField] private GameObject   m_player;
+        [SerializeField] private GameObject   m_warper;
+        [SerializeField] private GameObject   m_targetArrowPrefab;
+        public                   Action       OnNextLevel;
 
         private int m_lvlIndex = 0;
 
         private void Awake()
         {
-            m_state  = GameState.RUN;
+            m_state = GameState.RUN;
 
             if (m_warper != null)
                 m_warper.SetActive(false);
@@ -89,11 +92,13 @@ namespace Managers
 
         public void NextLevel()
         {
-            Debug.Log("Loading Next Level");
             if (OnNextLevel != null)
                 OnNextLevel();
 
             m_lvlIndex++;
+            int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+            if (nextScene < SceneManager.sceneCountInBuildSettings - 1)
+                SceneManager.LoadScene(nextScene);
         }
     }
 }

@@ -5,94 +5,102 @@ using UnityEngine;
 
 public class TractorBeam : MonoBehaviour
 {
+    [Header("Player Config")]
     public PlayerDataSO m_playerData;
-    public int        m_decrementBatteryValue  = 5;
-    public float        m_timerDecrementInterval = 1.0f;
-    public float        MaxLengthRay             = 8.0f;
-    public Transform    Crosshair;
 
-    public LayerMask Mask;
+    public int   m_decrementBatteryValue  = 5;
+    public float m_timerDecrementInterval = 1.0f;
 
-    private Vector3 MouseLastPos;
+    [Header("Ray Beam PHYSICS Config")]
+    public float m_centerRaySmoothness = 0.5f;
 
-    public GameObject Target;
+    public LayerMask m_mask;
+    public float     m_maxLengthRay = 8.0f;
+    public float     m_dragForce    = 1;
+
+    [Header("Ray Beam DISPLAY Config")]
     public GameObject m_blackHolePrefab;
 
-    private float LastDirTimer;
-    public  float DragForce = 1;
+    public float m_beamEndOffset      = 1f; //How far from the raycast hit point the end effect is positioned
+    public float m_textureScrollSpeed = 8f; //How fast the texture scrolls along the beam
+    public float m_textureLengthScale = 3;  //Length of the beam texture
 
-    public float beamEndOffset      = 1f; //How far from the raycast hit point the end effect is positioned
-    public float textureScrollSpeed = 8f; //How fast the texture scrolls along the beam
-    public float textureLengthScale = 3;  //Length of the beam texture
+
+    [Header("Optional")]
+    public Transform m_crosshair;
 
     [Header("Prefabs")]
-    public GameObject[] beamLineRendererPrefab;
+    [SerializeField]private GameObject[] m_beamLineRendererPrefab;
+    [SerializeField] private GameObject[] m_beamStartPrefab;
+    [SerializeField] private GameObject[] m_beamEndPrefab;
+    [SerializeField] private GameObject   m_crossHairPrefab;
 
-    public GameObject[] beamStartPrefab;
-    public GameObject[] beamEndPrefab;
+    private float _lastDirTimer;
+    private int   _currentBeam = 0;
 
-    private int currentBeam = 0;
-
-    private GameObject   beamStart;
-    private GameObject   beamEnd;
-    private GameObject   beam;
-    private LineRenderer line;
-    private Vector2      m_centerRay;
-    private Vector2      m_centerRayVelocity   = Vector2.zero;
-    public  float        m_centerRaySmoothness = 0.5f;
-
-    private GameObject m_temporaryBlackHole;
-    private float      m_distanceTarget;
-    private float      m_actualDecrementTime;
+    private GameObject   _target;
+    private Vector3      _mouseLastPos;
+    private GameObject   _beamStart;
+    private GameObject   _beamEnd;
+    private GameObject   _beam;
+    private LineRenderer _line;
+    private Vector2      _centerRay;
+    private Vector2      _centerRayVelocity = Vector2.zero;
+    private GameObject   _temporaryBlackHole;
+    private float        _distanceTarget;
+    private float        _actualDecrementTime;
 
     void Start()
     {
-        MouseLastPos = Vector3.zero;
+        _mouseLastPos = Vector3.zero;
+        if (m_crosshair != null)
+            m_crosshair = Instantiate(m_crossHairPrefab, transform.position, Quaternion.identity).transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Target != null)
+        if (_target != null)
         {
-            m_distanceTarget = Vector3.Distance(transform.position, Target.transform.position);
+            _distanceTarget = Vector3.Distance(transform.position, _target.transform.position);
         }
 
         Cursor.visible = false;
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Crosshair.position = new Vector3(mousePosition.x, mousePosition.y, 0);
 
-        Vector3      RayDir = mousePosition - transform.position;
-        RaycastHit2D hit    = Physics2D.Raycast(transform.position, RayDir, MaxLengthRay, Mask);
+        m_crosshair.position = new Vector3(mousePosition.x, mousePosition.y, 0);
+
+        Vector3      rayDir = mousePosition - transform.position;
+        RaycastHit2D hit    = Physics2D.Raycast(transform.position, rayDir, m_maxLengthRay, m_mask);
 
         //TRACTOR
         Debug.DrawRay(transform.position, mousePosition - transform.position, Color.blue);
 
-        if (Time.time > LastDirTimer)
+        if (Time.time > _lastDirTimer)
         {
-            MouseLastPos = Input.mousePosition;
+            _mouseLastPos = Input.mousePosition;
 
-            LastDirTimer = Time.time + 0.05f;
+            _lastDirTimer = Time.time + 0.05f;
         }
 
-        Vector3 MouseDir = Input.mousePosition - MouseLastPos;
+        Vector3 mouseDir = Input.mousePosition - _mouseLastPos;
         if (Input.GetMouseButtonDown(0))
         {
-            beamStart = Instantiate(beamStartPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
-            beamEnd   = Instantiate(beamEndPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
-            beam      = Instantiate(beamLineRendererPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
-            line      = beam.GetComponent<LineRenderer>();
+            _beamStart = Instantiate(m_beamStartPrefab[_currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
+            _beamEnd   = Instantiate(m_beamEndPrefab[_currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
+            _beam      = Instantiate(m_beamLineRendererPrefab[_currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
+            _line      = _beam.GetComponent<LineRenderer>();
 
             if (AudioManager.instance != null)
                 AudioManager.instance.SetIsBeamActivated(true);
 
             if (hit)
             {
-                Target = hit.collider.gameObject;
-                if (Target.GetComponent<WasteBehaviour>() != null)
+                _target = hit.collider.gameObject;
+                if (_target.GetComponent<WasteBehaviour>() != null)
                 {
-                    DragForce                                     = Target.GetComponent<WasteBehaviour>().m_dragForce;
-                    Target.GetComponent<WasteBehaviour>().m_state = WasteBehaviour.WasteState.TRACKED;
+                    m_dragForce                                    = _target.GetComponent<WasteBehaviour>().m_dragForce;
+                    _target.GetComponent<WasteBehaviour>().m_state = WasteBehaviour.WasteState.TRACKED;
                 }
             }
         }
@@ -100,55 +108,55 @@ public class TractorBeam : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Vector2 tdir;
-            if (Target)
+            if (_target)
             {
-                Vector3 target = new Vector2((transform.position.x + Target.transform.position.x) / 2,
-                                             (transform.position.y + Target.transform.position.y) / 2);
-                target      += (MouseDir.normalized * 5);
-                m_centerRay =  Vector2.SmoothDamp(m_centerRay, target, ref m_centerRayVelocity, m_centerRaySmoothness);
-                tdir        =  Target.transform.position - transform.position;
+                Vector3 target = new Vector2((transform.position.x + _target.transform.position.x) / 2,
+                                             (transform.position.y + _target.transform.position.y) / 2);
+                target     += (mouseDir.normalized * 5);
+                _centerRay =  Vector2.SmoothDamp(_centerRay, target, ref _centerRayVelocity, m_centerRaySmoothness);
+                tdir       =  _target.transform.position - transform.position;
 
-                if (m_temporaryBlackHole == null)
+                if (_temporaryBlackHole == null)
                 {
-                    m_temporaryBlackHole =
-                        Instantiate(m_blackHolePrefab, Target.transform.position, Quaternion.identity);
-                    m_temporaryBlackHole.transform.localScale = transform.localScale * 2;
+                    _temporaryBlackHole =
+                        Instantiate(m_blackHolePrefab, _target.transform.position, Quaternion.identity);
+                    _temporaryBlackHole.transform.localScale = transform.localScale * 2;
                 }
             }
             else
             {
-                m_centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
-                                          (transform.position.y + mousePosition.y) / 2);
+                _centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
+                                         (transform.position.y + mousePosition.y) / 2);
                 tdir = mousePosition - transform.position;
             }
 
-            if (line != null &&
-                beamStart != null &&
-                beamEnd != null &&
-                beam != null)
+            if (_line != null &&
+                _beamStart != null &&
+                _beamEnd != null &&
+                _beam != null)
             {
                 ShootBeamInDir(transform.position, tdir);
             }
 
-            if (Target)
+            if (_target)
             {
-                Target.GetComponent<Rigidbody2D>().AddForce(MouseDir * DragForce);
-                Target.GetComponent<Rigidbody2D>().AddTorque(0.01f);
-                m_actualDecrementTime += Time.deltaTime;
+                _target.GetComponent<Rigidbody2D>().AddForce(mouseDir * m_dragForce);
+                _target.GetComponent<Rigidbody2D>().AddTorque(0.01f);
+                _actualDecrementTime += Time.deltaTime;
 
-                if (m_actualDecrementTime > m_timerDecrementInterval)
+                if (_actualDecrementTime > m_timerDecrementInterval)
                 {
-                    m_actualDecrementTime = 0.0f;
+                    _actualDecrementTime   =  0.0f;
                     m_playerData.m_battery -= m_decrementBatteryValue;
                 }
             }
         }
         else if (!Input.GetMouseButton(0))
         {
-            Target = null;
-            m_centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
-                                      (transform.position.y + mousePosition.y) / 2);
-            m_distanceTarget = 0.0f;
+            _target = null;
+            _centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
+                                     (transform.position.y + mousePosition.y) / 2);
+            _distanceTarget = 0.0f;
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -156,73 +164,73 @@ public class TractorBeam : MonoBehaviour
             if (AudioManager.instance != null)
                 AudioManager.instance.SetIsBeamActivated(false);
 
-            Destroy(beamStart);
-            Destroy(beamEnd);
-            Destroy(beam);
-            Destroy(m_temporaryBlackHole);
-            m_distanceTarget = 0.0f;
-            m_actualDecrementTime = 0.0f;
+            Destroy(_beamStart);
+            Destroy(_beamEnd);
+            Destroy(_beam);
+            Destroy(_temporaryBlackHole);
+            _distanceTarget      = 0.0f;
+            _actualDecrementTime = 0.0f;
         }
 
-        if (m_temporaryBlackHole != null && Target != null)
+        if (_temporaryBlackHole != null && _target != null)
         {
-            m_temporaryBlackHole.transform.position =
-                new Vector3(Target.transform.position.x, Target.transform.position.y, -1);
+            _temporaryBlackHole.transform.position =
+                new Vector3(_target.transform.position.x, _target.transform.position.y, -1);
         }
 
-        if (m_distanceTarget > MaxLengthRay)
+        if (_distanceTarget > m_maxLengthRay)
         {
             if (AudioManager.instance != null)
                 AudioManager.instance.SetIsBeamActivated(false);
-            Target = null;
-            Destroy(beamStart);
-            Destroy(beamEnd);
-            Destroy(beam);
-            Destroy(m_temporaryBlackHole);
+            _target = null;
+            Destroy(_beamStart);
+            Destroy(_beamEnd);
+            Destroy(_beam);
+            Destroy(_temporaryBlackHole);
         }
     }
 
-    public void SetForceAppliedToWaste(float force)
+    public void SetForceAppliedToWaste(float p_force)
     {
-        DragForce = force;
+        m_dragForce = p_force;
     }
 
-    void ShootBeamInDir(Vector2 start, Vector2 dir)
+    void ShootBeamInDir(Vector2 p_start, Vector2 p_dir)
     {
-        line.positionCount = 3;
-        line.SetPosition(0, start);
-        beamStart.transform.position = start;
+        _line.positionCount = 3;
+        _line.SetPosition(0, p_start);
+        _beamStart.transform.position = p_start;
 
         Vector3      end      = Vector3.zero;
-        Vector3      dir3D    = new Vector3(dir.x, dir.y, 0);
+        Vector3      dir3D    = new Vector3(p_dir.x, p_dir.y, 0);
         Vector2      position = new Vector2(transform.position.x, transform.position.y);
-        RaycastHit2D hit      = Physics2D.Raycast(start, dir, MaxLengthRay, Mask);
+        RaycastHit2D hit      = Physics2D.Raycast(p_start, p_dir, m_maxLengthRay, m_mask);
 
         if (hit)
-            end = hit.point - (dir.normalized * beamEndOffset);
+            end = hit.point - (p_dir.normalized * m_beamEndOffset);
         else
-            end = position + dir.normalized * MaxLengthRay;
+            end = position + p_dir.normalized * m_maxLengthRay;
 
-        Debug.DrawRay(start, dir, Color.red);
+        Debug.DrawRay(p_start, p_dir, Color.red);
 
-        line.SetPosition(1, m_centerRay);
+        _line.SetPosition(1, _centerRay);
 
-        beamEnd.transform.position = end;
-        line.SetPosition(2, end);
+        _beamEnd.transform.position = end;
+        _line.SetPosition(2, end);
 
-        beamStart.transform.LookAt(m_centerRay);
-        beamEnd.transform.LookAt(beamStart.transform.position);
+        _beamStart.transform.LookAt(_centerRay);
+        _beamEnd.transform.LookAt(_beamStart.transform.position);
 
-        float distance = Vector3.Distance(start, end);
-        line.sharedMaterial.mainTextureScale  =  new Vector2(distance / textureLengthScale, 1);
-        line.sharedMaterial.mainTextureOffset -= new Vector2(Time.deltaTime * textureScrollSpeed, 0);
+        float distance = Vector3.Distance(p_start, end);
+        _line.sharedMaterial.mainTextureScale  =  new Vector2(distance / m_textureLengthScale, 1);
+        _line.sharedMaterial.mainTextureOffset -= new Vector2(Time.deltaTime * m_textureScrollSpeed, 0);
 
         AnimationCurve curve = new AnimationCurve();
 
         curve.AddKey(0.0f, 0.0f);
         curve.AddKey(1.0f, 0.5f);
 
-        line.widthCurve      = curve;
-        line.widthMultiplier = 1.0f;
+        _line.widthCurve      = curve;
+        _line.widthMultiplier = 1.0f;
     }
 }

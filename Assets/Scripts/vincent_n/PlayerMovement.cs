@@ -6,8 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_speed = 50.0f;
     [SerializeField] private Transform m_bodyPlayer;
     [SerializeField] private float m_smoothBodyPlayerRotation = 1.0f;
-    //[SerializeField] private GameObject m_movingBeam;
-    //private GameObject m_movingBeam;
+    [SerializeField] private GameObject m_movingBeam;
 
 
     private Rigidbody2D m_rigidbody;
@@ -21,22 +20,23 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 playerDirection = Vector2.zero;
-
-        if (AudioManager.instance != null && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
-        {
-            AudioManager.instance.SetIsPropulsion(true);
-            AudioManager.instance.SetVolume(AudioManager.instance.m_AmbientMusicAudioSource, (Mathf.Abs(m_rigidbody.velocity.normalized.x) + Mathf.Abs(m_rigidbody.velocity.normalized.y)) / 2);
-            m_movingBeam.SetActive(true);
-        }
-        else if (AudioManager.instance != null && (Input.GetAxis("Horizontal") == 0 || Input.GetAxis("Vertical") == 0))
-        {
-            AudioManager.instance.SetIsPropulsion(false);
-            //m_movingBeam.SetActive(false);
-        }
-
         playerDirection.x = Input.GetAxis("Horizontal");
         playerDirection.y = Input.GetAxis("Vertical");
 
+        if (AudioManager.instance != null && playerDirection != Vector2.zero)
+        {
+            AudioManager.instance.SetIsPropulsion(true);
+            AudioManager.instance.SetVolume(AudioManager.instance.m_AmbientMusicAudioSource, (Mathf.Abs(m_rigidbody.velocity.normalized.x) + Mathf.Abs(m_rigidbody.velocity.normalized.y)) / 2);
+            if (m_movingBeam != null)
+                m_movingBeam.SetActive(true);
+        }
+
+        if (AudioManager.instance != null && playerDirection == Vector2.zero)
+        {
+            AudioManager.instance.SetIsPropulsion(false);
+            if (m_movingBeam != null)
+                m_movingBeam.SetActive(true);
+        }
 
         if (playerDirection != Vector2.zero)
         {

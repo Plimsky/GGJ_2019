@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 303046593}
   - component: {fileID: 303046594}
   - component: {fileID: 303046595}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 560834712}
   - component: {fileID: 560834713}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 1682738078}
   - component: {fileID: 1682738080}
   - component: {fileID: 4675504469993766250}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Detectors
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 8079759423776004342}
   - component: {fileID: 676377204712077684}
   - component: {fileID: 4353919389376762215}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -368,6 +368,7 @@ MonoBehaviour:
   m_speed: 50
   m_bodyPlayer: {fileID: 560834712}
   m_smoothBodyPlayerRotation: 20
+  m_movingBeam: {fileID: 0}
 --- !u!114 &8079759423776004342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,28 +381,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f109b74f7296ca48bdc9f79c5c34ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerData: {fileID: 0}
+  m_playerData: {fileID: 11400000, guid: 74916c3a2c32f8b419d8608238675b54, type: 2}
   m_decrementBatteryValue: 5
   m_timerDecrementInterval: 1
-  MaxLengthRay: 7
-  Crosshair: {fileID: 0}
-  Mask:
+  m_centerRaySmoothness: 0.8
+  m_mask:
     serializedVersion: 2
     m_Bits: 256
-  Target: {fileID: 0}
+  m_maxLengthRay: 8
+  m_dragForce: 1
   m_blackHolePrefab: {fileID: 1114786918742542, guid: 47bec420ca70e754193933847d80ebee,
     type: 3}
-  DragForce: 0.12
-  beamEndOffset: 0
-  textureScrollSpeed: 8
-  textureLengthScale: 3
-  beamLineRendererPrefab:
+  m_beamEndOffset: 0
+  m_textureScrollSpeed: 8
+  m_textureLengthScale: 3
+  m_crosshair: {fileID: 3265881270378559455, guid: 8b7b5a9c5a126f54993551dc9291741c,
+    type: 3}
+  m_beamLineRendererPrefab:
   - {fileID: 1773250190492750, guid: 54818a36f710bc74cb9bce5afe08999b, type: 3}
-  beamStartPrefab:
+  m_beamStartPrefab:
   - {fileID: 1450890654167080, guid: e799cf5edcdf6ad489cd4bcbc7cd69fb, type: 3}
-  beamEndPrefab:
+  m_beamEndPrefab:
   - {fileID: 1124451057500510, guid: ef17ef2a78dffbe4d8d58cca2451353c, type: 3}
-  m_centerRaySmoothness: 0.8
+  m_crossHairPrefab: {fileID: 92763504189732465, guid: 8b7b5a9c5a126f54993551dc9291741c,
+    type: 3}
 --- !u!114 &676377204712077684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,6 +482,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarField
       objectReference: {fileID: 0}
+    - target: {fileID: 8342492611452100888, guid: f209c8c7604f4384d8abda21c71d6062,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8342492611452100889, guid: f209c8c7604f4384d8abda21c71d6062,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -534,6 +542,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8342492611452100890, guid: f209c8c7604f4384d8abda21c71d6062,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ae1b20c81d5230409e74e96a6696612, type: 2}
+    - target: {fileID: 8342492611452100890, guid: f209c8c7604f4384d8abda21c71d6062,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ae1b20c81d5230409e74e96a6696612, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f209c8c7604f4384d8abda21c71d6062, type: 3}
 --- !u!4 &8387681681849503381 stripped

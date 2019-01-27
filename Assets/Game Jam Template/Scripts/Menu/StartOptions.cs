@@ -14,6 +14,7 @@ public class StartOptions : MonoBehaviour {
 	public bool changeMusicOnStart;										//Choose whether to continue playing menu music or start a new music clip
     public CanvasGroup fadeOutImageCanvasGroup;                         //Canvas group used to fade alpha of image which fades in before changing scenes
     public Image fadeImage;                                             //Reference to image used to fade out before changing scenes
+    public GameObject m_background;
 
 	[HideInInspector] public bool inMainMenu = true;					//If true, pause button disabled in main menu (Cancel in input manager, default escape key)
 	[HideInInspector] public AnimationClip fadeAlphaAnimationClip;		//Animation clip fading out UI elements alpha
@@ -57,7 +58,7 @@ public class StartOptions : MonoBehaviour {
 			//Use invoke to delay calling of LoadDelayed by half the length of fadeColorAnimationClip
 			Invoke ("LoadDelayed", menuSettingsData.menuFadeTime);
 
-            StartCoroutine(FadeCanvasGroupAlpha(0f, 1f, fadeOutImageCanvasGroup));
+            StartCoroutine(FadeCanvasGroupAlpha(0f, 1f, fadeOutImageCanvasGroup, true));
 
         } 
 
@@ -123,12 +124,12 @@ public class StartOptions : MonoBehaviour {
                 Invoke("PlayNewMusic", menuSettingsData.menuFadeTime);
             }
 
-            StartCoroutine(FadeCanvasGroupAlpha(1f, 0f, menuCanvasGroup));
-            fadeImage.gameObject.SetActive(false);
+            StartCoroutine(FadeCanvasGroupAlpha(1f, 0f, menuCanvasGroup, false));
+
         }
 	}
 
-    public IEnumerator FadeCanvasGroupAlpha(float startAlpha, float endAlpha, CanvasGroup canvasGroupToFadeAlpha)
+    public IEnumerator FadeCanvasGroupAlpha(float startAlpha, float endAlpha, CanvasGroup canvasGroupToFadeAlpha, bool disableFadeImage)
     {
 
         float elapsedTime = 0f;
@@ -144,6 +145,8 @@ public class StartOptions : MonoBehaviour {
 
         HideDelayed();
         Debug.Log("Coroutine done. Game started in same scene! Put your game starting stuff here.");
+
+        fadeImage.gameObject.SetActive(disableFadeImage);
     }
 
 

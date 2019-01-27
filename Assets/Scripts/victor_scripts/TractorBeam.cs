@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class TractorBeam : MonoBehaviour
 {
-    public float     MaxLengthRay = 8.0f;
-    public Transform Crosshair;
+    public PlayerDataSO m_playerData;
+    public int        m_decrementBatteryValue  = 5;
+    public float        m_timerDecrementInterval = 1.0f;
+    public float        MaxLengthRay             = 8.0f;
+    public Transform    Crosshair;
 
     public LayerMask Mask;
 
@@ -40,6 +43,7 @@ public class TractorBeam : MonoBehaviour
 
     private GameObject m_temporaryBlackHole;
     private float      m_distanceTarget;
+    private float      m_actualDecrementTime;
 
     void Start()
     {
@@ -84,12 +88,12 @@ public class TractorBeam : MonoBehaviour
 
             if (hit)
             {
-
                 Target = hit.collider.gameObject;
                 if (Target.GetComponent<WasteBehaviour>() != null)
                 {
                     DragForce                                     = Target.GetComponent<WasteBehaviour>().m_dragForce;
                     Target.GetComponent<WasteBehaviour>().m_state = WasteBehaviour.WasteState.TRACKED;
+                    m_playerData.m_battery -= m_decrementBatteryValue;
                 }
             }
         }
@@ -101,14 +105,14 @@ public class TractorBeam : MonoBehaviour
             {
                 Vector3 target = new Vector2((transform.position.x + Target.transform.position.x) / 2,
                                              (transform.position.y + Target.transform.position.y) / 2);
-                target += (MouseDir.normalized * 5);
-                m_centerRay = Vector2.SmoothDamp(m_centerRay, target, ref m_centerRayVelocity, m_centerRaySmoothness);
-                tdir        = Target.transform.position - transform.position;
+                target      += (MouseDir.normalized * 5);
+                m_centerRay =  Vector2.SmoothDamp(m_centerRay, target, ref m_centerRayVelocity, m_centerRaySmoothness);
+                tdir        =  Target.transform.position - transform.position;
 
                 if (m_temporaryBlackHole == null)
                 {
                     m_temporaryBlackHole =
-                        Instantiate(m_blackHolePrefab,Target.transform.position, Quaternion.identity);
+                        Instantiate(m_blackHolePrefab, Target.transform.position, Quaternion.identity);
                     m_temporaryBlackHole.transform.localScale = transform.localScale * 2;
                 }
             }
@@ -131,6 +135,13 @@ public class TractorBeam : MonoBehaviour
             {
                 Target.GetComponent<Rigidbody2D>().AddForce(MouseDir * DragForce);
                 Target.GetComponent<Rigidbody2D>().AddTorque(0.01f);
+                m_actualDecrementTime += Time.deltaTime;
+
+                if (m_actualDecrementTime > m_timerDecrementInterval)
+                {
+                    m_actualDecrementTime = 0.0f;
+                    m_playerData.m_battery -= m_decrementBatteryValue;
+                }
             }
         }
         else if (!Input.GetMouseButton(0))
@@ -151,6 +162,7 @@ public class TractorBeam : MonoBehaviour
             Destroy(beam);
             Destroy(m_temporaryBlackHole);
             m_distanceTarget = 0.0f;
+            m_actualDecrementTime = 0.0f;
         }
 
         if (m_temporaryBlackHole != null && Target != null)

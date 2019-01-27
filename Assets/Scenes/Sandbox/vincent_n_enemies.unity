@@ -1083,6 +1083,11 @@ PrefabInstance:
       propertyPath: Crosshair
       value: 
       objectReference: {fileID: 816196188}
+    - target: {fileID: 8079759423776004342, guid: 9caeab1d5cbfb6b4db15465b9f0724fa,
+        type: 3}
+      propertyPath: m_timerDecrementInterval
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9caeab1d5cbfb6b4db15465b9f0724fa, type: 3}
 --- !u!1001 &1571005152

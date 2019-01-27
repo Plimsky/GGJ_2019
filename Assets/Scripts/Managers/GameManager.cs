@@ -36,8 +36,6 @@ namespace Managers
         {
             m_state = GameState.RUN;
 
-            if (m_warper != null)
-                m_warper.SetActive(false);
 
             if (instance == null)
             {
@@ -49,13 +47,19 @@ namespace Managers
             }
             else
                 Destroy(gameObject);
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        private void Start()
+        private void OnSceneLoaded(Scene p_arg0, LoadSceneMode p_arg1)
         {
             m_player = GameObject.FindGameObjectWithTag("Player");
             m_warper = GameObject.FindGameObjectWithTag("Environment/Warper");
+
+            if (m_warper != null)
+                m_warper.SetActive(false);
         }
+
 
         public void OnUpdateStats()
         {
@@ -69,6 +73,8 @@ namespace Managers
 
         private void CheckFragments()
         {
+            Debug.Log("TOTAL FRAGMENTS : " + m_playerData.m_fragments + " / " +
+                      m_lvlList[m_lvlIndex].m_minimalFragments);
             if (m_lvlIndex < m_lvlList.Count && m_playerData.m_fragments >= m_lvlList[m_lvlIndex].m_minimalFragments)
             {
                 m_warper.SetActive(true);
@@ -87,6 +93,7 @@ namespace Managers
             if (m_playerData.m_life <= 0)
             {
                 m_state = GameState.DEAD;
+                SceneManager.LoadScene(m_lvlIndex + 1);
             }
         }
 

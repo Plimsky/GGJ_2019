@@ -527,6 +527,10 @@ PrefabInstance:
       propertyPath: mainMusic
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 22470916, guid: d343e46093a1d234e92c0ee2a4b6ab2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6158447
+      objectReference: {fileID: 0}
     - target: {fileID: 22496010, guid: d343e46093a1d234e92c0ee2a4b6ab2e, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -760,6 +764,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630994492250498516, guid: d343e46093a1d234e92c0ee2a4b6ab2e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6158447
+      objectReference: {fileID: 0}
+    - target: {fileID: 743404929669963789, guid: d343e46093a1d234e92c0ee2a4b6ab2e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.93426514
       objectReference: {fileID: 0}
     - target: {fileID: 960029096162471978, guid: d343e46093a1d234e92c0ee2a4b6ab2e,
         type: 3}

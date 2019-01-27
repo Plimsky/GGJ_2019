@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_state: 0
   m_lvlList:
-  - {fileID: 11400000, guid: 8e3441e9d4ba6fa4aa4a0a73154ea94a, type: 2}
   - {fileID: 11400000, guid: 3596ed1d75d754c44a5b198fc55e30c3, type: 2}
+  - {fileID: 11400000, guid: 8e3441e9d4ba6fa4aa4a0a73154ea94a, type: 2}
   m_playerData: {fileID: 11400000, guid: 74916c3a2c32f8b419d8608238675b54, type: 2}
   m_player: {fileID: 0}
   m_warper: {fileID: 0}

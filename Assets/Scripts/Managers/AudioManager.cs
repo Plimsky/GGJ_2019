@@ -47,6 +47,33 @@ namespace Managers
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+
+            SceneManager.sceneLoaded += SceneLoaded;
+        }
+
+        private void SceneLoaded(Scene p_arg0, LoadSceneMode p_arg1)
+        {
+            if (p_arg0.buildIndex != 0)
+            {
+                if (m_EngineAudioSource == null || m_introAudioSource == null || m_loopAudioSource == null || m_OneShotAudioSource == null ||
+                    SceneManager.GetActiveScene().buildIndex == 0)
+                {
+                    return;
+                }
+
+                m_isCollision     = false;
+                m_isExplosion     = false;
+                m_isPropulsion    = false;
+                m_isBeamPlaying   = false;
+                m_isBeamActivated = false;
+
+                UpdateBeam();
+                UpdateCollision();
+                UpdateExplosion();
+                UpdatePowerUp();
+                UpdatePropulsion();
+                UpdateMusic();
+            }
         }
 
         private void Update()

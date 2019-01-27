@@ -22,15 +22,15 @@ namespace Managers
 
         [Header("Level Management")]
         [SerializeField]
-        private List<LevelDataSO> m_lvlList = new List<LevelDataSO>();
+        public List<LevelDataSO> m_lvlList = new List<LevelDataSO>();
 
-        [SerializeField] private PlayerDataSO m_playerData;
+        [SerializeField] public PlayerDataSO m_playerData;
         [SerializeField] private GameObject   m_player;
         [SerializeField] private GameObject   m_warper;
         [SerializeField] private GameObject   m_targetArrowPrefab;
         public                   Action       OnNextLevel;
 
-        private int m_lvlIndex = 0;
+        public int m_lvlIndex = 0;
 
         private void Awake()
         {

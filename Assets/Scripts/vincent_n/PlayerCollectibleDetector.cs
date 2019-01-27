@@ -14,6 +14,7 @@ public class PlayerCollectibleDetector : MonoBehaviour
         {
             m_playerData.m_fragments++;
             GameManager.instance.OnUpdateStats();
+            AudioManager.instance.SetIsPowerUp(true);
             Destroy(other.gameObject);
         }
         else if(other.gameObject.CompareTag(m_batteryTag))
@@ -22,6 +23,7 @@ public class PlayerCollectibleDetector : MonoBehaviour
             {
                 m_playerData.m_battery += 10;
                 GameManager.instance.OnUpdateStats();
+                AudioManager.instance.SetIsPowerUp(true);
                 Destroy(other.gameObject);
             }
 

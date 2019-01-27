@@ -434,8 +434,17 @@ MonoBehaviour:
   m_introAudioSource: {fileID: 7214712116220511876}
   m_loopAudioSource: {fileID: 7214712116220511898}
   m_OneShotAudioSource: {fileID: 7214712116220511897}
-  m_EngineAudioSource: {fileID: 0}
+  m_EngineAudioSource: {fileID: 915056459411268817}
   beamStartClip: {fileID: 8300000, guid: f724eb85ce7b7ea4da6f91313954bc1c, type: 3}
   beamLoopClip: {fileID: 8300000, guid: 455147c60e7efad4f82d9d9045de7aec, type: 3}
-  propulsionSound: {fileID: 0}
-  collisionClips: []
+  propulsionSound: {fileID: 8300000, guid: 395fad010166a224d9fcb9a4bc35d2b3, type: 3}
+  powerUpClip: {fileID: 8300000, guid: 6c22e2274ac07a649aedc28b03fc6d39, type: 3}
+  collisionClips:
+  - {fileID: 8300000, guid: 946dbbfcf25670644975ff0661577079, type: 3}
+  - {fileID: 8300000, guid: aa88d6824afcfb247a00127c8f6ffaaa, type: 3}
+  - {fileID: 8300000, guid: 8f21e02bd8007af47a1f1b1a9733c49c, type: 3}
+  - {fileID: 8300000, guid: cde1d332aff6fb548a0e830fb953a1b0, type: 3}
+  - {fileID: 8300000, guid: 4da77ea8a4c21184cb255f672a39c397, type: 3}
+  - {fileID: 8300000, guid: afb015bedcd4e09478147b5ace2ef720, type: 3}
+  - {fileID: 8300000, guid: a065e2af9e1b6c64291b0fb8ba7ff563, type: 3}
+  explosionClip: {fileID: 8300000, guid: 3a59e0909c745084ab5169883aea2741, type: 3}

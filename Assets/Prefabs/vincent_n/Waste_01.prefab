@@ -114,7 +114,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.15123962
+  m_Radius: 0.18
 --- !u!50 &481560617
 Rigidbody2D:
   serializedVersion: 4
@@ -157,6 +157,12 @@ MonoBehaviour:
   m_velocityLimitForBeingMortal: 1
   m_particles: {fileID: 1712772490943773}
   m_particles2: {fileID: 1620450568488662}
+  m_explosionPrefabs:
+  - {fileID: 1279064898749148, guid: 42ed8dddf299960458c81cbd0c813dc2, type: 3}
+  - {fileID: 1424388112719170, guid: 0bb2dd3b77fbcd047860dde6f603ee04, type: 3}
+  - {fileID: 1380083432330736, guid: 6aedd83ba88c4d142855a765beeaa26e, type: 3}
+  - {fileID: 1070101629368536, guid: 23e068c82bd47204ab59866df12f738b, type: 3}
+  - {fileID: 1052214234485304, guid: 03f8965833e00064c817b50b867f7663, type: 3}
 --- !u!1001 &1102298089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,6 +226,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1777692387653870, guid: d81a60b4a6df339489616a645cd4586b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198834492479222464, guid: d81a60b4a6df339489616a645cd4586b,
         type: 3}
       propertyPath: useRigidbodyForVelocity
@@ -228,10 +238,6 @@ PrefabInstance:
     - target: {fileID: 198834492479222464, guid: d81a60b4a6df339489616a645cd4586b,
         type: 3}
       propertyPath: InitialModule.rotation3D
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1777692387653870, guid: d81a60b4a6df339489616a645cd4586b, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

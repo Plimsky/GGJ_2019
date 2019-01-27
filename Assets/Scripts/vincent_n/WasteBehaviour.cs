@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Managers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,6 +62,7 @@ public class WasteBehaviour : MonoBehaviour
 
         if (m_life <= 0)
         {
+            AudioManager.instance.SetIsExplosion(true);
             Instantiate(m_explosionPrefabs[Random.Range(0, m_explosionPrefabs.Count - 1)], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

@@ -158,6 +158,8 @@ public class TractorBeam : MonoBehaviour
 
         if (m_distanceTarget > MaxLengthRay)
         {
+            if (AudioManager.instance != null)
+                AudioManager.instance.SetIsBeamActivated(false);
             Target = null;
             Destroy(beamStart);
             Destroy(beamEnd);

@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 playerDirection;
 
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        if (AudioManager.instance != null && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
             AudioManager.instance.SetIsPropulsion(true);
-        else
+        else if (AudioManager.instance != null && (Input.GetAxis("Horizontal") == 0 || Input.GetAxis("Vertical") == 0))
             AudioManager.instance.SetIsPropulsion(false);
 
         playerDirection.x = Input.GetAxis("Horizontal");

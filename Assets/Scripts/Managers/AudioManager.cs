@@ -18,14 +18,20 @@ namespace Managers
         public AudioClip beamStartClip;
         public AudioClip beamLoopClip;
         public AudioClip propulsionSound;
+        public AudioClip powerUpClip;
         public AudioClip[] collisionClips;
+        public AudioClip explosionClip;
 
         private bool m_isBeamActivated = false;
         private bool m_isBeamPlaying = false;
         private bool m_isCollision = false;
-        private bool m_isPropulsion = false;
         private bool m_isCollisionPlaying = false;
+        private bool m_isPropulsion = false;
         private bool m_isPropulsionPlaying = false;
+        private bool m_isPowerUp = false;
+        private bool m_isPowerUpPlaying = false;
+        private bool m_isExplosionPlaying = false;
+        private bool m_isExplosion = false;
 
         private void Awake()
         {
@@ -47,7 +53,7 @@ namespace Managers
                 m_isBeamPlaying = false;
             }
 
-            if (m_isCollision && !m_isCollisionPlaying)
+            if (!m_isExplosion && m_isCollision && !m_isCollisionPlaying)
             {
                 PlaySoundOnce(collisionClips[Random.Range(0,6)]);
                 m_isCollisionPlaying = true;
@@ -63,6 +69,27 @@ namespace Managers
             {
                 ResetAudioSource(m_EngineAudioSource);
                 m_isPropulsionPlaying = false;
+            }
+
+            if (m_isPowerUp && !m_isPowerUpPlaying)
+            {
+                PlaySoundOnce(powerUpClip);
+                m_isPowerUpPlaying = true;
+            }
+            else if (m_isPowerUpPlaying && !m_OneShotAudioSource.isPlaying)
+            {
+                m_isPowerUp = false;
+                m_isPowerUpPlaying = false;
+            }
+            if (m_isExplosion && !m_isExplosionPlaying)
+            {
+                m_isExplosionPlaying = true;
+                PlaySoundOnce(explosionClip);
+            }
+            else if (m_isExplosionPlaying && !m_OneShotAudioSource.isPlaying)
+            {
+                m_isExplosionPlaying = false;
+                m_isExplosion = false;
             }
         }
 
@@ -113,6 +140,16 @@ namespace Managers
         public void SetIsPropulsion(bool p_ip)
         {
             m_isPropulsion = p_ip;
+        }
+
+        public void SetIsPowerUp(bool p_ipu)
+        {
+            m_isPowerUp = p_ipu;
+        }
+
+        public void SetIsExplosion(bool p_ie)
+        {
+            m_isExplosion = p_ie;
         }
     }
 }

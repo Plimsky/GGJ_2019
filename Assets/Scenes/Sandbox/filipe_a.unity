@@ -383,7 +383,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e3441e9d4ba6fa4aa4a0a73154ea94a, type: 2}
   - {fileID: 11400000, guid: 3596ed1d75d754c44a5b198fc55e30c3, type: 2}
   m_playerData: {fileID: 11400000, guid: 74916c3a2c32f8b419d8608238675b54, type: 2}
+  m_player: {fileID: 0}
   m_warper: {fileID: 0}
+  m_targetArrowPrefab: {fileID: 0}
 --- !u!4 &663387560
 Transform:
   m_ObjectHideFlags: 0
@@ -470,6 +472,35 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.18
       objectReference: {fileID: 0}
+    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
+      propertyPath: m_explosionPrefabs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
+      propertyPath: m_explosionPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1279064898749148, guid: 42ed8dddf299960458c81cbd0c813dc2,
+        type: 3}
+    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
+      propertyPath: m_explosionPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1424388112719170, guid: 0bb2dd3b77fbcd047860dde6f603ee04,
+        type: 3}
+    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
+      propertyPath: m_explosionPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1380083432330736, guid: 6aedd83ba88c4d142855a765beeaa26e,
+        type: 3}
+    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
+      propertyPath: m_explosionPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 1070101629368536, guid: 23e068c82bd47204ab59866df12f738b,
+        type: 3}
+    - target: {fileID: 1339929549, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
+      propertyPath: m_explosionPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1052214234485304, guid: 03f8965833e00064c817b50b867f7663,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f94dfa3fecd2a7041891fb24a21271dc, type: 3}
 --- !u!1001 &809346875
@@ -1611,59 +1642,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
         type: 3}
-      propertyPath: collisionClips.Array.size
-      value: 7
-      objectReference: {fileID: 0}
+      propertyPath: powerUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c22e2274ac07a649aedc28b03fc6d39, type: 3}
     - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
         type: 3}
-      propertyPath: collisionClips.Array.data[0]
+      propertyPath: explosionClip
       value: 
-      objectReference: {fileID: 8300000, guid: 946dbbfcf25670644975ff0661577079, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: collisionClips.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: aa88d6824afcfb247a00127c8f6ffaaa, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: collisionClips.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 8f21e02bd8007af47a1f1b1a9733c49c, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: collisionClips.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: cde1d332aff6fb548a0e830fb953a1b0, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: collisionClips.Array.data[4]
-      value: 
-      objectReference: {fileID: 8300000, guid: 4da77ea8a4c21184cb255f672a39c397, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: collisionClips.Array.data[5]
-      value: 
-      objectReference: {fileID: 8300000, guid: afb015bedcd4e09478147b5ace2ef720, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: collisionClips.Array.data[6]
-      value: 
-      objectReference: {fileID: 8300000, guid: a065e2af9e1b6c64291b0fb8ba7ff563, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: propulsionSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 395fad010166a224d9fcb9a4bc35d2b3, type: 3}
-    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-        type: 3}
-      propertyPath: m_EngineAudioSource
-      value: 
-      objectReference: {fileID: 7214712115860547948}
+      objectReference: {fileID: 8300000, guid: 3a59e0909c745084ab5169883aea2741, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4c860d24dd8fa24887e63ef9aae1a55, type: 3}
---- !u!82 &7214712115860547948 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 915056459411268817, guid: e4c860d24dd8fa24887e63ef9aae1a55,
-    type: 3}
-  m_PrefabInstance: {fileID: 7214712115860547947}
-  m_PrefabAsset: {fileID: 0}

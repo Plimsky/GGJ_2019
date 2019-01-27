@@ -19,6 +19,7 @@ namespace Managers
         [Header("FX AudioClips")]
         public AudioClip beamStartClip;
         public AudioClip beamLoopClip;
+        public AudioClip beamEndClip;
         public AudioClip propulsionSound;
         public AudioClip powerUpClip;
         public AudioClip[] collisionClips;
@@ -71,6 +72,7 @@ namespace Managers
             {
                 ResetAudioSource(m_introAudioSource);
                 ResetAudioSource(m_loopAudioSource);
+                //m_loopAudioSource.PlayOneShot(beamEndClip);
                 m_isBeamPlaying = false;
             }
         }

@@ -95,6 +95,10 @@ MonoBehaviour:
   m_playerData: {fileID: 11400000, guid: 74916c3a2c32f8b419d8608238675b54, type: 2}
   m_fragmentTag: Collectibles/Fragment
   m_batteryTag: Collectibles/BatteryPack
+  m_powerUpPrefabs:
+  - {fileID: 1257286241711574, guid: 86f0ecd45cb0dc4408f9cd9bbfd7a213, type: 3}
+  - {fileID: 1627529331328210, guid: 081f19f208eca734387b693881a9e03f, type: 3}
+  m_timeBeforeDestroyingPrefabParticle: 2
 --- !u!1 &8079759423776004340
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +264,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   Target: {fileID: 0}
-  m_blackHolePrefab: {fileID: 1114786918742542, guid: 90b4bb91e7f307d4cb84a9aa2bd8435c,
+  m_blackHolePrefab: {fileID: 1114786918742542, guid: 47bec420ca70e754193933847d80ebee,
     type: 3}
   DragForce: 0.12
   beamEndOffset: 0

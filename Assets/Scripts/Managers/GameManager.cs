@@ -66,7 +66,7 @@ namespace Managers
 
         private void CheckFragments()
         {
-            if (m_playerData.m_fragments >= m_lvlList[m_lvlIndex].m_minimalFragments)
+            if (m_lvlIndex < m_lvlList.Count && m_playerData.m_fragments >= m_lvlList[m_lvlIndex].m_minimalFragments)
             {
                 m_warper.SetActive(true);
                 GameObject refTargetArrow =

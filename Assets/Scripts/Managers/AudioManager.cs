@@ -74,7 +74,7 @@ namespace Managers
             m_loopAudioSource.clip = beamLoopClip;
 
             double introDuration = (double)m_introAudioSource.clip.samples / m_introAudioSource.clip.frequency;
-            double startTime = AudioSettings.dspTime + 0.01;
+            double startTime = AudioSettings.dspTime;
 
             m_introAudioSource.PlayScheduled(startTime);
 

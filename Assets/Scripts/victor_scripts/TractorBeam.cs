@@ -79,10 +79,11 @@ public class TractorBeam : MonoBehaviour
             beam      = Instantiate(beamLineRendererPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
             line      = beam.GetComponent<LineRenderer>();
 
+            if (AudioManager.instance != null)
+                AudioManager.instance.SetIsBeamActivated(true);
+
             if (hit)
             {
-                if(AudioManager.instance != null)
-                   AudioManager.instance.SetIsBeamActivated(true);
 
                 Target = hit.collider.gameObject;
                 if (Target.GetComponent<WasteBehaviour>() != null)

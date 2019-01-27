@@ -180,10 +180,12 @@ MonoBehaviour:
   RayStart: {fileID: 9132771951467713106}
   Mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   LaserBullet: {fileID: 4892294781497448254, guid: 8f01d8e1dc961d5469764d60b245bd41,
     type: 3}
   RateOfFire: 5
+  TimeBetweenEachBurst: 2
+  BulletsPerBurst: 4
 --- !u!61 &4095125048363641402
 BoxCollider2D:
   m_ObjectHideFlags: 0

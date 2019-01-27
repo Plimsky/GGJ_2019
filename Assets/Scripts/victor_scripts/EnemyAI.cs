@@ -23,7 +23,6 @@ public class EnemyAI : MonoBehaviour
     public int BulletsPerBurst;
     private int BulletsShot;
 
-
     private bool isOnBurstCooldown;
         
     void Start()

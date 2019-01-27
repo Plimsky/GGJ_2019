@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 198942916748674614}
   - component: {fileID: 199913632535753198}
   m_Layer: 0
-  m_Name: BeamupCloudGreen
+  m_Name: BeamupCloudGreen 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4741,8 +4741,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1107268465
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_RenderMode: 4
   m_SortMode: 0

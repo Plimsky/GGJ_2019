@@ -157,6 +157,12 @@ MonoBehaviour:
   m_velocityLimitForBeingMortal: 1
   m_particles: {fileID: 1712771862651792}
   m_particles2: {fileID: 1620451938921754}
+  m_explosionPrefabs:
+  - {fileID: 1279064898749148, guid: 42ed8dddf299960458c81cbd0c813dc2, type: 3}
+  - {fileID: 1424388112719170, guid: 0bb2dd3b77fbcd047860dde6f603ee04, type: 3}
+  - {fileID: 1380083432330736, guid: 6aedd83ba88c4d142855a765beeaa26e, type: 3}
+  - {fileID: 1070101629368536, guid: 23e068c82bd47204ab59866df12f738b, type: 3}
+  - {fileID: 1052214234485304, guid: 03f8965833e00064c817b50b867f7663, type: 3}
 --- !u!1001 &558329078
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -36,6 +36,7 @@ public class PlayerHitDetector : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         GameObject go = other.gameObject;
+        Debug.Log("asddasasdadsdasadsadsasdasddasasdasd"+ go.tag);
         foreach (string tagName in m_tagListHit)
         {
             if (go.CompareTag(tagName))
@@ -69,6 +70,9 @@ public class PlayerHitDetector : MonoBehaviour
                 else
                 {
                     Debug.Log("Maybe it's a Laser Enemy Shot");
+                    m_playerData.m_life -= 5;
+                    Instantiate(m_sparksPrefabs[Random.Range(0, m_sparksPrefabs.Count - 1)], transform.position, Quaternion.identity);
+                    Destroy(go);
                 }
 
                 break;

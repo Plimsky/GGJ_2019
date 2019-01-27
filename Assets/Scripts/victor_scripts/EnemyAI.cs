@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 FallBackVector;
 
     public Rigidbody2D LaserBullet;
+    public GameObject m_explosionPrefab;
 
     public float RateOfFire;
     public float TimeBetweenEachBurst;
@@ -24,7 +25,8 @@ public class EnemyAI : MonoBehaviour
     private int BulletsShot;
 
     private bool isOnBurstCooldown;
-        
+    [SerializeField] private float m_velocityDamageValue = 1.0f;
+
     void Start()
     {
         RateOfFire = 1.0f / RateOfFire;
@@ -90,8 +92,6 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-        //Debug.DrawRay(RayStart.position, transform.right * 100.0f);
-
         Debug.Log(hit.collider.gameObject);
     }
 
@@ -103,5 +103,19 @@ public class EnemyAI : MonoBehaviour
     public void SetTimeBetweenEachBurst(float Timer)
     {
         TimeBetweenEachBurst = Timer;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Environment/Waste_mini"))
+        {
+            Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
+            if (rb.velocity.magnitude > m_velocityDamageValue)
+            {
+                if (m_explosionPrefab != null)
+                    Instantiate(m_explosionPrefab, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+        }
     }
 }

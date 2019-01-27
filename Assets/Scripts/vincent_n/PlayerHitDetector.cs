@@ -20,7 +20,7 @@ public class PlayerHitDetector : MonoBehaviour
     [SerializeField] private List<GameObject> m_sparksPrefabs;
     private GameObject m_temporarySparks;
 
-    
+
     //public GameObject m_lowHealthSparksPrefab1;
     //public GameObject m_lowHealthSparksPrefab2;
     //public GameObject m_lowHealthSparksPrefab3;
@@ -86,8 +86,6 @@ public class PlayerHitDetector : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (AudioManager.instance != null)
-            AudioManager.instance.SetIsCollision(false);
     }
 
     private IEnumerator ResetToFreeState()
@@ -97,6 +95,8 @@ public class PlayerHitDetector : MonoBehaviour
         yield return new WaitForSeconds(m_invulnerabilityTime);
         Destroy(m_temporarySparks);
         m_isInvulnerable = false;
+        if (AudioManager.instance != null)
+            AudioManager.instance.SetIsCollision(false);
     }
 
     private IEnumerator SparksIntervale()

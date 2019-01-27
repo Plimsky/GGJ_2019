@@ -1535,6 +1535,11 @@ PrefabInstance:
       propertyPath: m_velocityMagnitudeForDamage
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8387681681849503381, guid: b15f884371cabba46be1cfdf4893f16a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b15f884371cabba46be1cfdf4893f16a, type: 3}
 --- !u!1001 &7214712115860547947
@@ -1604,5 +1609,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: collisionClips.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: collisionClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 946dbbfcf25670644975ff0661577079, type: 3}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: collisionClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: aa88d6824afcfb247a00127c8f6ffaaa, type: 3}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: collisionClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f21e02bd8007af47a1f1b1a9733c49c, type: 3}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: collisionClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: cde1d332aff6fb548a0e830fb953a1b0, type: 3}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: collisionClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4da77ea8a4c21184cb255f672a39c397, type: 3}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: collisionClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: afb015bedcd4e09478147b5ace2ef720, type: 3}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: collisionClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: a065e2af9e1b6c64291b0fb8ba7ff563, type: 3}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: propulsionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 395fad010166a224d9fcb9a4bc35d2b3, type: 3}
+    - target: {fileID: 7214712116220511877, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+        type: 3}
+      propertyPath: m_EngineAudioSource
+      value: 
+      objectReference: {fileID: 7214712115860547948}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4c860d24dd8fa24887e63ef9aae1a55, type: 3}
+--- !u!82 &7214712115860547948 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 915056459411268817, guid: e4c860d24dd8fa24887e63ef9aae1a55,
+    type: 3}
+  m_PrefabInstance: {fileID: 7214712115860547947}
+  m_PrefabAsset: {fileID: 0}

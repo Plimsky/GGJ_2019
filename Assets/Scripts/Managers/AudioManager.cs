@@ -12,16 +12,20 @@ namespace Managers
         public AudioSource m_introAudioSource;
         public AudioSource m_loopAudioSource;
         public AudioSource m_OneShotAudioSource;
+        public AudioSource m_EngineAudioSource;
 
         [Header("AudioClips")]
         public AudioClip beamStartClip;
         public AudioClip beamLoopClip;
-        public AudioClip collisionClip;
+        public AudioClip propulsionSound;
+        public AudioClip[] collisionClips;
 
         private bool m_isBeamActivated = false;
         private bool m_isBeamPlaying = false;
         private bool m_isCollision = false;
+        private bool m_isPropulsion = false;
         private bool m_isCollisionPlaying = false;
+        private bool m_isPropulsionPlaying = false;
 
         private void Awake()
         {
@@ -45,13 +49,20 @@ namespace Managers
 
             if (m_isCollision && !m_isCollisionPlaying)
             {
-                PlaySoundOnce(collisionClip);
+                PlaySoundOnce(collisionClips[Random.Range(0,6)]);
                 m_isCollisionPlaying = true;
             }
-            else if(m_isCollisionPlaying)
-            {
-                if (!m_OneShotAudioSource.isPlaying)
+            else if(m_isCollisionPlaying && !m_isCollision)
                     m_isCollisionPlaying = false;
+
+            if (m_isPropulsion && !m_isPropulsionPlaying)
+            {
+                Propulse();
+            }
+            else if (m_isPropulsionPlaying && !m_isPropulsion)
+            {
+                ResetAudioSource(m_EngineAudioSource);
+                m_isPropulsionPlaying = false;
             }
         }
 
@@ -65,6 +76,13 @@ namespace Managers
         public void PlaySoundOnce(AudioClip p_audioClip)
         {
             m_OneShotAudioSource.PlayOneShot(p_audioClip);
+        }
+
+        public void Propulse()
+        {
+            m_EngineAudioSource.clip = propulsionSound;
+            m_EngineAudioSource.Play();
+            m_isPropulsionPlaying = true;
         }
 
         public void StartBeam()
@@ -90,6 +108,11 @@ namespace Managers
         public void SetIsCollision(bool p_ic)
         {
             m_isCollision = p_ic;
+        }
+
+        public void SetIsPropulsion(bool p_ip)
+        {
+            m_isPropulsion = p_ip;
         }
     }
 }

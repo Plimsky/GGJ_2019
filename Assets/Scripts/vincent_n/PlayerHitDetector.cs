@@ -13,16 +13,19 @@ public class PlayerHitDetector : MonoBehaviour
     [SerializeField] private bool m_spark = false;
     [SerializeField] private float m_sparksIntervale = 3.0f;
 
-    public GameObject m_sparksPrefab1;
-    public GameObject m_sparksPrefab2;
-    public GameObject m_sparksPrefab3;
-    public GameObject m_sparksPrefab4;
+    //public GameObject m_sparksPrefab1;
+    //public GameObject m_sparksPrefab2;
+    //public GameObject m_sparksPrefab3;
+    //public GameObject m_sparksPrefab4;
+    [SerializeField] private List<GameObject> m_sparksPrefabs;
     private GameObject m_temporarySparks;
 
-    public GameObject m_lowHealthSparksPrefab1;
-    public GameObject m_lowHealthSparksPrefab2;
-    public GameObject m_lowHealthSparksPrefab3;
-    public GameObject m_lowHealthSparksPrefab4;
+    
+    //public GameObject m_lowHealthSparksPrefab1;
+    //public GameObject m_lowHealthSparksPrefab2;
+    //public GameObject m_lowHealthSparksPrefab3;
+    //public GameObject m_lowHealthSparksPrefab4;
+    [SerializeField] private List<GameObject> m_lowHealthPrefabs;
     private GameObject m_lowHealthSparks;
 
     private void Update()
@@ -56,26 +59,7 @@ public class PlayerHitDetector : MonoBehaviour
                         m_playerData.m_life -= wasteBehaviourScript.m_damageValue;
 
                         if (m_temporarySparks == null)
-                        {
-                            int randValue = Random.Range(0, 3);
-
-                            switch (randValue)
-                            {
-                                case 0:
-                                    m_temporarySparks = Instantiate(m_sparksPrefab1, transform.position, Quaternion.identity);
-                                    break;
-                                case 1:
-                                    m_temporarySparks = Instantiate(m_sparksPrefab2, transform.position, Quaternion.identity);
-                                    break;
-                                case 2:
-                                    m_temporarySparks = Instantiate(m_sparksPrefab3, transform.position, Quaternion.identity);
-                                    break;
-                                case 3:
-                                    m_temporarySparks = Instantiate(m_sparksPrefab4, transform.position, Quaternion.identity);
-                                    break;
-                            }
-
-                        }
+                            m_temporarySparks = Instantiate(m_sparksPrefabs[Random.Range(0, m_sparksPrefabs.Count - 1)], transform.position, Quaternion.identity);
 
                         StartCoroutine("ResetToFreeState", m_invulnerabilityTime);
                     }
@@ -94,23 +78,7 @@ public class PlayerHitDetector : MonoBehaviour
     {
         if (m_playerData.m_life < 25.0f && !m_spark)
         {
-            int randValue = Random.Range(0, 3);
-
-            switch (randValue)
-            {
-                case 0:
-                    m_lowHealthSparks = Instantiate(m_lowHealthSparksPrefab1, transform.position, Quaternion.identity);
-                    break;
-                case 1:
-                    m_lowHealthSparks = Instantiate(m_lowHealthSparksPrefab2, transform.position, Quaternion.identity);
-                    break;
-                case 2:
-                    m_lowHealthSparks = Instantiate(m_lowHealthSparksPrefab3, transform.position, Quaternion.identity);
-                    break;
-                case 3:
-                    m_lowHealthSparks = Instantiate(m_lowHealthSparksPrefab4, transform.position, Quaternion.identity);
-                    break;
-            }
+            m_lowHealthSparks = Instantiate(m_lowHealthPrefabs[Random.Range(0, m_lowHealthPrefabs.Count - 1)], transform.position, Quaternion.identity);
 
             StartCoroutine("SparksIntervale", m_sparksIntervale);
         }

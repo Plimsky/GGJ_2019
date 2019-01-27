@@ -64,6 +64,7 @@ public class EnemyAI : MonoBehaviour
         Ray ray = new Ray(RayStart.position, transform.right * 100.0f);
         RaycastHit2D hit = Physics2D.Raycast(RayStart.position, transform.right * 100.0f);
 
+        Debug.Log(hit.collider.gameObject);
         if(BulletsShot >= BulletsPerBurst)
         {
             isOnBurstCooldown = true;

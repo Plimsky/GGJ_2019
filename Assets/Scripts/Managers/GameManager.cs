@@ -67,7 +67,6 @@ namespace Managers
             if (m_state != GameState.DEAD)
             {
                 CheckFragments();
-//                CheckEnemies();
             }
         }
 

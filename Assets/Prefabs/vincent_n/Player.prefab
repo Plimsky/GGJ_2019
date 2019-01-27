@@ -307,22 +307,16 @@ MonoBehaviour:
   m_isInvulnerable: 0
   m_spark: 0
   m_sparksIntervale: 3
-  m_sparksPrefab1: {fileID: 1141511138885584, guid: c7fac82531930914bac5152c1e960e8f,
-    type: 3}
-  m_sparksPrefab2: {fileID: 1970972249526710, guid: e8417a90f37803c4b866c07498fef666,
-    type: 3}
-  m_sparksPrefab3: {fileID: 1566782965043258, guid: 769236f573092ac4d864319538287b9c,
-    type: 3}
-  m_sparksPrefab4: {fileID: 1791338774388008, guid: e566fe10e8880a146a454407002d1848,
-    type: 3}
-  m_lowHealthSparksPrefab1: {fileID: 1767285590155568, guid: fa5eefb1487f5794a983e6f4cc635509,
-    type: 3}
-  m_lowHealthSparksPrefab2: {fileID: 1007741820394180, guid: 3f4437e116e7e6a4990c3adea84e5165,
-    type: 3}
-  m_lowHealthSparksPrefab3: {fileID: 1069985701613268, guid: 75fe49936c5bb4948a6034ce836d72f8,
-    type: 3}
-  m_lowHealthSparksPrefab4: {fileID: 1584654980060918, guid: 50162c5a70f7695479c65e2255e7b5f6,
-    type: 3}
+  m_sparksPrefabs:
+  - {fileID: 1141511138885584, guid: c7fac82531930914bac5152c1e960e8f, type: 3}
+  - {fileID: 1970972249526710, guid: e8417a90f37803c4b866c07498fef666, type: 3}
+  - {fileID: 1566782965043258, guid: 769236f573092ac4d864319538287b9c, type: 3}
+  - {fileID: 1791338774388008, guid: e566fe10e8880a146a454407002d1848, type: 3}
+  m_lowHealthPrefabs:
+  - {fileID: 1767285590155568, guid: fa5eefb1487f5794a983e6f4cc635509, type: 3}
+  - {fileID: 1007741820394180, guid: 3f4437e116e7e6a4990c3adea84e5165, type: 3}
+  - {fileID: 1069985701613268, guid: 75fe49936c5bb4948a6034ce836d72f8, type: 3}
+  - {fileID: 1584654980060918, guid: 50162c5a70f7695479c65e2255e7b5f6, type: 3}
 --- !u!1001 &549849104224399244
 PrefabInstance:
   m_ObjectHideFlags: 0

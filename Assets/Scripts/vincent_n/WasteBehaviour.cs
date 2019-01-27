@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WasteBehaviour : MonoBehaviour
@@ -19,6 +20,9 @@ public class WasteBehaviour : MonoBehaviour
     [SerializeField] private float m_velocityLimitForBeingMortal = 1f;
     [SerializeField] private GameObject m_particles;
     [SerializeField] private GameObject m_particles2;
+
+    [SerializeField] private List<GameObject> m_explosionPrefabs;
+    private GameObject m_temporaryExplosion;
 
 
     private Rigidbody2D m_rigidbody;
@@ -56,7 +60,11 @@ public class WasteBehaviour : MonoBehaviour
 //            StartCoroutine("ResetToFreeState", m_trackedTime);
 
         if (m_life <= 0)
+        {
             Destroy(gameObject);
+            m_temporaryExplosion = Instantiate(m_explosionPrefabs[Random.Range(0, m_explosionPrefabs.Count - 1)], transform.position, Quaternion.identity);
+        }
+
 
         if (m_state == WasteState.MORTAL)
         {

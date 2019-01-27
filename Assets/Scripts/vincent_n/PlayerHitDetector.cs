@@ -36,9 +36,6 @@ public class PlayerHitDetector : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         GameObject go = other.gameObject;
-        if (AudioManager.instance != null)
-            AudioManager.instance.SetIsCollision(true);
-
         foreach (string tagName in m_tagListHit)
         {
             if (go.CompareTag(tagName))
@@ -49,6 +46,11 @@ public class PlayerHitDetector : MonoBehaviour
                 if (rigidbody2D != null && wasteBehaviourScript != null)
                 {
                     Debug.Log("Velocity Magnitude of " + go.name + " : " + rigidbody2D.velocity.magnitude);
+                    if (AudioManager.instance != null)
+                    {
+                        AudioManager.instance.SetIsCollision(true);
+                        AudioManager.instance.SetVolume(AudioManager.instance.m_OneShotAudioSource, (Mathf.Abs(rigidbody2D.velocity.normalized.x) + Mathf.Abs(rigidbody2D.velocity.normalized.y)) / 2);
+                    }
 
                     if (rigidbody2D.velocity.magnitude > m_velocityMagnitudeForDamage &&
                         wasteBehaviourScript.m_state == WasteBehaviour.WasteState.MORTAL && !m_isInvulnerable)

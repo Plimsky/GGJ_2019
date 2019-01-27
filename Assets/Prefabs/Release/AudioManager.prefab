@@ -535,6 +535,7 @@ MonoBehaviour:
   m_AmbientMusicAudioSource: {fileID: 5374463725419944046}
   beamStartClip: {fileID: 8300000, guid: f724eb85ce7b7ea4da6f91313954bc1c, type: 3}
   beamLoopClip: {fileID: 8300000, guid: 455147c60e7efad4f82d9d9045de7aec, type: 3}
+  beamEndClip: {fileID: 8300000, guid: a28eb02bfa8e9d04cb1dec7ca0d249ce, type: 3}
   propulsionSound: {fileID: 8300000, guid: 395fad010166a224d9fcb9a4bc35d2b3, type: 3}
   powerUpClip: {fileID: 8300000, guid: 6c22e2274ac07a649aedc28b03fc6d39, type: 3}
   collisionClips:

@@ -44,6 +44,18 @@ namespace Managers
 
         private void Update()
         {
+            CheckBeam();
+            CheckCollision();
+            CheckExplosion();
+            CheckPowerUp();
+            CheckPropulsion();
+
+            
+            
+        }
+
+        private void CheckBeam()
+        {
             if (m_isBeamActivated && !m_isBeamPlaying)
                 StartBeam();
             else if (!m_isBeamActivated && m_isBeamPlaying)
@@ -52,15 +64,22 @@ namespace Managers
                 ResetAudioSource(m_loopAudioSource);
                 m_isBeamPlaying = false;
             }
+        }
 
+        private void CheckCollision()
+        {
             if (!m_isExplosion && m_isCollision && !m_isCollisionPlaying)
             {
-                PlaySoundOnce(collisionClips[Random.Range(0,6)]);
+                PlaySoundOnce(collisionClips[Random.Range(0, 6)]);
                 m_isCollisionPlaying = true;
             }
-            else if(m_isCollisionPlaying && !m_isCollision)
-                    m_isCollisionPlaying = false;
+            else if (m_isCollisionPlaying && !m_isCollision)
+                m_isCollisionPlaying = false;
+        }
 
+
+        private void CheckPropulsion()
+        {
             if (m_isPropulsion && !m_isPropulsionPlaying)
             {
                 Propulse();
@@ -70,7 +89,11 @@ namespace Managers
                 ResetAudioSource(m_EngineAudioSource);
                 m_isPropulsionPlaying = false;
             }
+        }
 
+
+        private void CheckPowerUp()
+        {
             if (m_isPowerUp && !m_isPowerUpPlaying)
             {
                 PlaySoundOnce(powerUpClip);
@@ -81,6 +104,11 @@ namespace Managers
                 m_isPowerUp = false;
                 m_isPowerUpPlaying = false;
             }
+        }
+
+
+        private void CheckExplosion()
+        {
             if (m_isExplosion && !m_isExplosionPlaying)
             {
                 m_isExplosionPlaying = true;

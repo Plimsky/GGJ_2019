@@ -36,6 +36,8 @@ public class PlayerHitDetector : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         GameObject go = other.gameObject;
+        if (AudioManager.instance != null)
+            AudioManager.instance.SetIsCollision(true);
 
         foreach (string tagName in m_tagListHit)
         {
@@ -52,8 +54,6 @@ public class PlayerHitDetector : MonoBehaviour
                         wasteBehaviourScript.m_state == WasteBehaviour.WasteState.MORTAL && !m_isInvulnerable)
                     {
                         Debug.Log("HIT");
-                        if (AudioManager.instance != null)
-                            AudioManager.instance.SetIsCollision(true);
 
                         wasteBehaviourScript.m_life--;
                         m_playerData.m_life -= wasteBehaviourScript.m_damageValue;

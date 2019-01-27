@@ -23,6 +23,7 @@ public class WasteBehaviour : MonoBehaviour
 
     private Rigidbody2D m_rigidbody;
     private bool m_timerStarted;
+    private WasteState m_oldState;
 
     private void Awake()
     {
@@ -33,6 +34,12 @@ public class WasteBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if ((m_oldState == WasteState.FREE || m_oldState == WasteState.MORTAL) && m_state == WasteState.TRACKED)
+        {
+            Debug.Log("Reducing velocity");
+            m_rigidbody.velocity /= 3.0f;
+        }
+
         if (m_rigidbody.velocity.magnitude >= m_velocityLimitForBeingMortal && m_state == WasteState.TRACKED)
         {
             m_state = WasteState.MORTAL;
@@ -44,9 +51,9 @@ public class WasteBehaviour : MonoBehaviour
 
         if (m_state == WasteState.MORTAL && !m_timerStarted)
             StartCoroutine("ResetToFreeState", m_mortalTime);
-
-        if (m_state == WasteState.TRACKED && !m_timerStarted)
-            StartCoroutine("ResetToFreeState", m_trackedTime);
+//
+//        if (m_state == WasteState.TRACKED && !m_timerStarted)
+//            StartCoroutine("ResetToFreeState", m_trackedTime);
 
         if (m_life <= 0)
             Destroy(gameObject);
@@ -61,6 +68,8 @@ public class WasteBehaviour : MonoBehaviour
             m_particles.SetActive(false);
             m_particles2.SetActive(false);
         }
+
+        m_oldState = m_state;
     }
 
     private IEnumerator ResetToFreeState()

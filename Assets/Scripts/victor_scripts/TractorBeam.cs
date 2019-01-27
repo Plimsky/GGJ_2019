@@ -39,7 +39,7 @@ public class TractorBeam : MonoBehaviour
     public  float        m_centerRaySmoothness = 0.5f;
 
     private GameObject m_temporaryBlackHole;
-    private float m_distanceTarget;
+    private float      m_distanceTarget;
 
     void Start()
     {
@@ -95,8 +95,9 @@ public class TractorBeam : MonoBehaviour
             Vector2 tdir;
             if (Target)
             {
-                Vector2 target = new Vector2((transform.position.x + Target.transform.position.x) / 2,
+                Vector3 target = new Vector2((transform.position.x + Target.transform.position.x) / 2,
                                              (transform.position.y + Target.transform.position.y) / 2);
+                target += (MouseDir.normalized * 5);
                 m_centerRay = Vector2.SmoothDamp(m_centerRay, target, ref m_centerRayVelocity, m_centerRaySmoothness);
                 tdir        = Target.transform.position - transform.position;
 
@@ -111,8 +112,13 @@ public class TractorBeam : MonoBehaviour
                 tdir = mousePosition - transform.position;
             }
 
-
-            ShootBeamInDir(transform.position, tdir);
+            if (line != null &&
+                beamStart != null &&
+                beamEnd != null &&
+                beam != null)
+            {
+                ShootBeamInDir(transform.position, tdir);
+            }
 
             if (Target)
             {
@@ -125,6 +131,7 @@ public class TractorBeam : MonoBehaviour
             Target = null;
             m_centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
                                       (transform.position.y + mousePosition.y) / 2);
+            m_distanceTarget = 0.0f;
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -133,6 +140,7 @@ public class TractorBeam : MonoBehaviour
             Destroy(beamEnd);
             Destroy(beam);
             Destroy(m_temporaryBlackHole);
+            m_distanceTarget = 0.0f;
         }
 
         if (m_temporaryBlackHole != null && Target != null)
@@ -189,7 +197,7 @@ public class TractorBeam : MonoBehaviour
         AnimationCurve curve = new AnimationCurve();
 
         curve.AddKey(0.0f, 0.0f);
-        curve.AddKey(1.0f, 1.0f);
+        curve.AddKey(1.0f, 0.5f);
 
         line.widthCurve      = curve;
         line.widthMultiplier = 1.0f;

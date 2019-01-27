@@ -30,7 +30,9 @@ public class TractorBeam : MonoBehaviour
     public Transform m_crosshair;
 
     [Header("Prefabs")]
-    [SerializeField]private GameObject[] m_beamLineRendererPrefab;
+    [SerializeField]
+    private GameObject[] m_beamLineRendererPrefab;
+
     [SerializeField] private GameObject[] m_beamStartPrefab;
     [SerializeField] private GameObject[] m_beamEndPrefab;
     [SerializeField] private GameObject   m_crossHairPrefab;
@@ -79,79 +81,87 @@ public class TractorBeam : MonoBehaviour
         if (Time.time > _lastDirTimer)
         {
             _mouseLastPos = Input.mousePosition;
-
             _lastDirTimer = Time.time + 0.05f;
         }
 
         Vector3 mouseDir = Input.mousePosition - _mouseLastPos;
-        if (Input.GetMouseButtonDown(0))
+
+        if (m_playerData.m_battery >= 0)
         {
-            _beamStart = Instantiate(m_beamStartPrefab[_currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
-            _beamEnd   = Instantiate(m_beamEndPrefab[_currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
-            _beam      = Instantiate(m_beamLineRendererPrefab[_currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
-            _line      = _beam.GetComponent<LineRenderer>();
-
-            if (AudioManager.instance != null)
-                AudioManager.instance.SetIsBeamActivated(true);
-
-            if (hit)
+            if (Input.GetMouseButtonDown(0))
             {
-                _target = hit.collider.gameObject;
-                if (_target.GetComponent<WasteBehaviour>() != null)
+                _beamStart = Instantiate(m_beamStartPrefab[_currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
+                _beamEnd   = Instantiate(m_beamEndPrefab[_currentBeam], new Vector3(0, 0, 0), Quaternion.identity);
+                _beam = Instantiate(m_beamLineRendererPrefab[_currentBeam], new Vector3(0, 0, 0),
+                                         Quaternion.identity);
+                _line = _beam.GetComponent<LineRenderer>();
+
+                if (AudioManager.instance != null)
+                    AudioManager.instance.SetIsBeamActivated(true);
+
+                if (hit)
                 {
-                    m_dragForce                                    = _target.GetComponent<WasteBehaviour>().m_dragForce;
-                    _target.GetComponent<WasteBehaviour>().m_state = WasteBehaviour.WasteState.TRACKED;
-                }
-            }
-        }
+                    _target = hit.collider.gameObject;
+                    if (_target.GetComponent<WasteBehaviour>() != null)
+                    {
+                        m_dragForce =
+                            _target.GetComponent<WasteBehaviour>().m_dragForce;
+                        _target.GetComponent<WasteBehaviour>().m_state = WasteBehaviour.WasteState.TRACKED;
+                    }
 
-        if (Input.GetMouseButton(0))
-        {
-            Vector2 tdir;
-            if (_target)
-            {
-                Vector3 target = new Vector2((transform.position.x + _target.transform.position.x) / 2,
-                                             (transform.position.y + _target.transform.position.y) / 2);
-                target     += (mouseDir.normalized * 5);
-                _centerRay =  Vector2.SmoothDamp(_centerRay, target, ref _centerRayVelocity, m_centerRaySmoothness);
-                tdir       =  _target.transform.position - transform.position;
-
-                if (_temporaryBlackHole == null)
-                {
-                    _temporaryBlackHole =
-                        Instantiate(m_blackHolePrefab, _target.transform.position, Quaternion.identity);
-                    _temporaryBlackHole.transform.localScale = transform.localScale * 2;
-                }
-            }
-            else
-            {
-                _centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
-                                         (transform.position.y + mousePosition.y) / 2);
-                tdir = mousePosition - transform.position;
-            }
-
-            if (_line != null &&
-                _beamStart != null &&
-                _beamEnd != null &&
-                _beam != null)
-            {
-                ShootBeamInDir(transform.position, tdir);
-            }
-
-            if (_target)
-            {
-                _target.GetComponent<Rigidbody2D>().AddForce(mouseDir * m_dragForce);
-                _target.GetComponent<Rigidbody2D>().AddTorque(0.01f);
-                _actualDecrementTime += Time.deltaTime;
-
-                if (_actualDecrementTime > m_timerDecrementInterval)
-                {
-                    _actualDecrementTime   =  0.0f;
                     m_playerData.m_battery -= m_decrementBatteryValue;
                 }
             }
+
+            if (Input.GetMouseButton(0))
+            {
+                Vector2 tdir;
+                if (_target)
+                {
+                    Vector3 target = new Vector2((transform.position.x + _target.transform.position.x) / 2,
+                                                 (transform.position.y + _target.transform.position.y) / 2);
+                    target     += (mouseDir.normalized * 5);
+                    _centerRay =  Vector2.SmoothDamp(_centerRay, target, ref _centerRayVelocity, m_centerRaySmoothness);
+                    tdir       =  _target.transform.position - transform.position;
+
+                    if (_temporaryBlackHole == null)
+                    {
+                        _temporaryBlackHole =
+                            Instantiate(m_blackHolePrefab, _target.transform.position, Quaternion.identity);
+                        _temporaryBlackHole.transform.localScale = transform.localScale * 2;
+                    }
+                }
+                else
+                {
+                    _centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,
+                                             (transform.position.y + mousePosition.y) / 2);
+                    tdir = mousePosition - transform.position;
+                }
+
+                if (_line != null &&
+                    _beamStart != null &&
+                    _beamEnd != null &&
+                    _beam != null)
+                {
+                    ShootBeamInDir(transform.position, tdir);
+                }
+
+                if (_target)
+                {
+                    _target.GetComponent<Rigidbody2D>().AddForce(mouseDir * m_dragForce);
+                    _target.GetComponent<Rigidbody2D>().AddTorque(0.01f);
+                    _actualDecrementTime += Time.deltaTime;
+
+                    if (_actualDecrementTime > m_timerDecrementInterval)
+                    {
+                        _actualDecrementTime   =  0.0f;
+                        m_playerData.m_battery -= m_decrementBatteryValue;
+                    }
+                }
+            }
         }
-        else if (!Input.GetMouseButton(0))
+
+        if (!Input.GetMouseButton(0))
         {
             _target = null;
             _centerRay = new Vector2((transform.position.x + mousePosition.x) / 2,

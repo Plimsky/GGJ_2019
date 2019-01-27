@@ -17,7 +17,6 @@ public class PlayerCollectibleDetector : MonoBehaviour
     {
         if (other.gameObject.CompareTag(m_fragmentTag))
         {
-            Debug.Log("SAODINASDOIHNOIASDNOIASDNOIASDN");
             m_playerData.m_fragments++;
             if (GameManager.instance != null)
                 GameManager.instance.OnUpdateStats();
@@ -28,27 +27,23 @@ public class PlayerCollectibleDetector : MonoBehaviour
                AudioManager.instance.SetIsPowerUp(true);
             Destroy(other.gameObject);
             Destroy(powerUp, m_timeBeforeDestroyingPrefabParticle);
+
+            m_playerData.m_life = m_playerData.m_maxLife;
         }
         else if (other.gameObject.CompareTag(m_batteryTag))
         {
             if (m_playerData.m_battery < m_playerData.m_maxBattery)
             {
-                m_playerData.m_battery += 10;
-                GameManager.instance.OnUpdateStats();
+                m_playerData.m_battery = m_playerData.m_maxBattery;
+                if (GameManager.instance != null)
+                    GameManager.instance.OnUpdateStats();
                 if (AudioManager.instance != null)
                     AudioManager.instance.SetIsPowerUp(true);
                 GameObject powerUp = Instantiate(m_powerUpPrefabs[0], transform.position, Quaternion.identity,
                                                  gameObject.transform);
                 powerUp.transform.localPosition -= Vector3.forward;
-                Debug.Log("hit");
                 Destroy(other.gameObject);
                 Destroy(powerUp, m_timeBeforeDestroyingPrefabParticle);
-            }
-
-            if (m_playerData.m_battery > m_playerData.m_maxBattery)
-            {
-                m_playerData.m_battery = m_playerData.m_maxBattery;
-                //Instantiate(m_powerUpPrefabs[0], transform.position, Quaternion.identity);
             }
         }
     }

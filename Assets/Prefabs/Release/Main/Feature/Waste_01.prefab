@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560ffa8a9da1960419e0a1d1cc5ab04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_minSpeedRotation: -1
-  m_maxSpeedRotation: 1
+  m_minSpeedRotation: -2.5
+  m_maxSpeedRotation: 2.5
 --- !u!58 &8741205274618608211
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -157,6 +157,13 @@ MonoBehaviour:
   m_velocityLimitForBeingMortal: 1
   m_particles: {fileID: 1712772490943773}
   m_particles2: {fileID: 1620450568488662}
+  m_listOfSprites:
+  - {fileID: 21300000, guid: b4ae2a8204754ea4f9cd0b7df3883d40, type: 3}
+  - {fileID: 21300000, guid: 4e6e810ffb5214c4aa7c199f419c89e0, type: 3}
+  - {fileID: 21300000, guid: 641355c888f9aea4db3f316df2dd7a4f, type: 3}
+  - {fileID: 21300000, guid: b0f582d9a5935d740aa06f37a5285068, type: 3}
+  - {fileID: 21300000, guid: 0e4c7355abeeb4044a2f387b87242f1f, type: 3}
+  - {fileID: 21300000, guid: 880739c677485a04c916fa39d90a79aa, type: 3}
   m_explosionPrefabs:
   - {fileID: 1279064898749148, guid: 42ed8dddf299960458c81cbd0c813dc2, type: 3}
   - {fileID: 1424388112719170, guid: 0bb2dd3b77fbcd047860dde6f603ee04, type: 3}

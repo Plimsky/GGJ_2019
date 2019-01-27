@@ -21,7 +21,8 @@ public class WarpNextLevel : MonoBehaviour
                 Instantiate(m_spawnSpeedOfLightPrefab, go.transform.position, rotation);
             }
 
-            GameManager.instance.NextLevel();
+            if (GameManager.instance != null)
+                GameManager.instance.NextLevel();
         }
     }
 }

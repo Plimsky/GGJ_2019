@@ -21,6 +21,7 @@ public class WasteBehaviour : MonoBehaviour
     [SerializeField] private float m_velocityLimitForBeingMortal = 1f;
     [SerializeField] private GameObject m_particles;
     [SerializeField] private GameObject m_particles2;
+    [SerializeField] private List<Sprite> m_listOfSprites = new List<Sprite>();
 
     [SerializeField] private List<GameObject> m_explosionPrefabs;
 
@@ -35,6 +36,7 @@ public class WasteBehaviour : MonoBehaviour
         m_particles2.SetActive(false);
         m_particles.transform.localScale = transform.localScale / 4;
         m_particles2.transform.localScale = transform.localScale / 4;
+        GetComponent<SpriteRenderer>().sprite = m_listOfSprites[Random.Range(0, m_listOfSprites.Count - 1)];
     }
 
     private void Update()

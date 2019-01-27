@@ -9,7 +9,7 @@ public class InertiaObject : MonoBehaviour
     [SerializeField, Range(-5.0f, 5.0f)] private float m_maxSpeedRotation = 1.0f;
     private Rigidbody2D m_rigidbody;
 
-    private void Start()
+    private void Awake()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
         if (m_rigidbody != null)

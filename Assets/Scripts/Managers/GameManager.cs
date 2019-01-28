@@ -104,7 +104,7 @@ namespace Managers
 
             m_lvlIndex++;
             int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-            if (nextScene < SceneManager.sceneCountInBuildSettings - 1)
+            if (nextScene < SceneManager.sceneCountInBuildSettings)
                 SceneManager.LoadScene(nextScene);
         }
     }
